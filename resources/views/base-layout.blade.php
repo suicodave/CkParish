@@ -13,12 +13,16 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
-<body>
+<body class="app-bg">
+
 
     <div id="app">
-        <example-component>
-        </example-component>
+
+        @yield('content')
+
     </div>
+
+
 
     <script src="{{asset('js/app.js')}}"> </script>
 

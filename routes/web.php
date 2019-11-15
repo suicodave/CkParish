@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('base-layout');
 });
+
+Route::get('login', 'Auth\\LoginController@showLoginForm');
