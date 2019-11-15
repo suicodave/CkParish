@@ -5,8 +5,8 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-6 offset-3 form-container">
-            <div class="card card-body shadow-lg p-5">
+        <div class="col-4 offset-4 ">
+            <div class="card card-body form-container shadow  rounded-lg p-4">
                 <form>
                     <div class="form-group">
                         <label for="email">Email address</label>
