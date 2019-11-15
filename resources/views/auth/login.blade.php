@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-4 offset-4 ">
-            <div class="card card-body form-container shadow  rounded-lg p-4">
+            <div class="card card-body form-container shadow  rounded-lg p-5">
                 <form>
                     <div class="form-group">
                         <label for="email">Email address</label>
