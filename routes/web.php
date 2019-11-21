@@ -20,3 +20,11 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::get('logout', 'Auth\\LoginController@logout')->name('auth.logout');
 });
+
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::resource('roles', 'RoleController');
+
+    Route::resource('permissions', 'PermissionController');
+});

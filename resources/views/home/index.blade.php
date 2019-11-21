@@ -10,16 +10,20 @@
 
     </div>
     <div class="row">
-        @foreach (App\UserModule::MODULES as $module)
+        @foreach (App\UserModule::modules() as $module)
         <div class="col-3 d-flex align-items-stretch">
-            <div class="card text-white bg-dark  module-item mb-4">
+            <div class="card text-white bg-dark   mb-4">
                 <div class="card-body">
                     <h5 class="card-title">
                         {{$module['name']}}
                     </h5>
-                    <p class="card-text">
+                    <p class="card-text ">
                         {{$module['description']}}
                     </p>
+
+                    <a class="btn btn-primary col-12" href="{{$module['link']}}">
+                        Go
+                    </a>
                 </div>
             </div>
         </div>
@@ -29,9 +33,7 @@
 </div>
 
 <style>
-    .module-item {
-        cursor: pointer;
-    }
+
 </style>
 
 @endsection
