@@ -12,8 +12,8 @@ class UserModule
             //     'description' => 'User administration and management.'
             // ],
             [
-                'name' => 'Roles and Permissions',
-                'description' => 'User roles and permissions management. Regulates user access according to the organization\'s policy.',
+                'name' => 'User Permissions',
+                'description' => 'User permissions management regulates user access according to the organization\'s policy.',
                 'link' => route('permissions.index')
             ],
         ];
