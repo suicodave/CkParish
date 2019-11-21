@@ -2,7 +2,7 @@
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">{{config('app.name')}}</a>
+                <a class="nav-link" href="{{route('home')}}">{{config('app.name')}}</a>
             </li>
         </ul>
     </div>
@@ -17,7 +17,7 @@
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
-            
+
             <li class="nav-item">
                 <a class="nav-link" href="{{route('auth.logout')}}">
                     <span class="fa fa-sign-out-alt text-white"></span>
