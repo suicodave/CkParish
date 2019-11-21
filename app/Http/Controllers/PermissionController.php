@@ -14,7 +14,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = Permission::select(['id', 'name', 'created_at','updated_at'])->latest('created_at')->paginate(100);
+        $permissions = Permission::select(['id', 'name', 'created_at','updated_at'])->latest('created_at')->paginate(25);
 
         return view('permission.index', [
             'permissions' => $permissions
