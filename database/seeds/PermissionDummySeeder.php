@@ -12,6 +12,6 @@ class PermissionDummySeeder extends Seeder
      */
     public function run()
     {
-        factory(Permission::class, 5000)->create();
+        factory(Permission::class, 50)->create();
     }
 }
