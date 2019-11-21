@@ -57,7 +57,7 @@ class CreateAdmin extends Command
         $credentials = [
             'email' => $email,
             'name' => $name,
-            'password' => $password
+            'password' => bcrypt($password)
         ];
 
 

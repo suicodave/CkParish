@@ -13,8 +13,10 @@
 
 <body class="">
 
-    @includeWhen(\Route::currentRouteName() != 'login','partials.navbar')
-
+    @auth
+        @includeWhen(\Route::currentRouteName() != 'auth.get','partials.navbar')
+    @endauth
+    
 
     <div id="app">
     

@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('login', 'Auth\\LoginController@showLoginForm')->name('login');
+Route::group(['prefix' => 'auth'], function () {
+    Route::get('', 'Auth\\LoginController@showLoginForm')->name('auth.get');
+
+    Route::post('', 'Auth\\LoginController@login')->name('auth.post');
+
+    Route::get('logout', 'Auth\\LoginController@logout')->name('auth.logout');
+});

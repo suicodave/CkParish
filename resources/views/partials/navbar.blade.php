@@ -21,7 +21,7 @@
                 <a class="nav-link" href="#">Users</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('auth.logout')}}">
                     <span class="fa fa-sign-out-alt text-white"></span>
                 </a>
             </li>
