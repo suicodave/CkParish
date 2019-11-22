@@ -10,6 +10,12 @@ class User extends Authenticatable
 {
     use Notifiable, HasRoles;
 
+
+
+    function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucwords($value);
+    }
     /**
      * The attributes that are mass assignable.
      *

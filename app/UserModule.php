@@ -10,7 +10,7 @@ class UserModule
             [
                 'name' => 'Users',
                 'description' => 'Manage users who use the application.',
-                'link'=>'asd'
+                'link' => route('users.index')
             ],
             [
                 'name' => 'User Roles',
