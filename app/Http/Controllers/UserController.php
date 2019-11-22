@@ -14,7 +14,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::select(['id', 'name', 'created_at', 'updated_at'])->latest('id')->paginate();
+
+        return view('user.index', [
+            'users' => $users
+        ]);
     }
 
     /**
