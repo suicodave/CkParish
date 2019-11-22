@@ -47,6 +47,12 @@ class ChangePasswordController extends Controller
         if (!$this->attemptLogin($request)) {
             $this->sendFailedLoginResponse($request);
         }
+
+        if ($request->newPassword != $request->confirmPassword) {
+            throw ValidationException::withMessages([
+                'password' => ['Confirmation password does not match with the new one.'],
+            ]);
+        }
     }
 
     private function credentials(Request $request)
