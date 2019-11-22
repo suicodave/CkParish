@@ -35,14 +35,7 @@
 
                 <div class="col-9 px-5">
                     <div class="row">
-                        @foreach ($permissions as $permission)
-                        <div class="form-check col-4 mb-3">
-                            <input type="checkbox" value="{{$permission->name}}" name="permissions[]"
-                                class="form-check-input" id="exampleCheck{{$loop->index}}">
-                            <label class="form-check-label"
-                                for="exampleCheck{{$loop->index}}">{{$permission->name}}</label>
-                        </div>
-                        @endforeach
+                        @include('partials.permission.checkbox',['permissions'=>$permissions])
                     </div>
 
                 </div>
@@ -74,15 +67,10 @@
 
                 <div class="col-9 px-5">
                     <div class="row">
-                        @foreach ($permissions as $permission)
-                        <div class="form-check col-4 mb-3">
-                            <input type="checkbox" value="{{$permission->name}}" name="permissions[]"
-                                class="form-check-input" id="exampleCheck{{$loop->index}}"
-                                {{ in_array($permission->name,$rolePermissionNames) ? 'checked' : 'false' }}>
-                            <label class="form-check-label"
-                                for="exampleCheck{{$loop->index}}">{{$permission->name}}</label>
-                        </div>
-                        @endforeach
+                        @include('partials.permission.checkbox',[
+                        'permissions'=>$permissions,
+                        'existingPermissions'=>$rolePermissionNames
+                        ])
                     </div>
 
                 </div>
