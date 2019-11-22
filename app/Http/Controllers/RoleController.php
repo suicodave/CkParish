@@ -20,9 +20,7 @@ class RoleController extends Controller
 
     function create()
     {
-        $permissions = Permission::oldest('name')->get(['name']);
-
-        return view('role.create', ['permissions' => $permissions]);
+        return view('role.create');
     }
 
     function store(Request $request)
@@ -44,11 +42,7 @@ class RoleController extends Controller
 
         $rolePermissionNames = (array) $role->permissions->pluck('name')->all();
 
-        $permissions = Permission::oldest('name')->get(['name']);
-
-
         return view('role.create', [
-            'permissions' => $permissions,
             'rolePermissionNames' => $rolePermissionNames,
             'role' => $role
         ]);
