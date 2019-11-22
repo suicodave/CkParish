@@ -13,16 +13,26 @@
         @foreach (App\UserModule::modules() as $module)
         <div class="col-3 d-flex align-items-stretch">
             <div class="card text-white bg-dark   mb-4">
-                <div class="card-body">
+
+                <div class="card-header">
                     <h5 class="card-title">
                         {{$module['name']}}
                     </h5>
-                    <p class="card-text ">
-                        {{$module['description']}}
-                    </p>
+                </div>
 
-                    <a class="btn btn-primary col-12" href="{{$module['link']}}">
-                        Go
+                <div class="card-body">
+                    <div class="description-wrapper">
+                        <p class="card-text ">
+                            {{$module['description']}}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card-footer">
+                    <a class="btn btn-primary float-right col-3 " href="{{$module['link']}}">
+                        <span class="fas fa-external-link-alt"></span>
                     </a>
                 </div>
             </div>

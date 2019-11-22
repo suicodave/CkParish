@@ -7,10 +7,11 @@ class UserModule
     static function modules()
     {
         return  [
-            // [
-            //     'name' => 'Users',
-            //     'description' => 'User administration and management.'
-            // ],
+            [
+                'name' => 'Users',
+                'description' => 'Manage users who use the application.',
+                'link'=>'asd'
+            ],
             [
                 'name' => 'User Roles',
                 'description' => 'User roles management. Associate roles to permissions to easily bind a set of privileges to users.',
