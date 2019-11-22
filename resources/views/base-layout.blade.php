@@ -14,12 +14,12 @@
 <body class="">
 
     @auth
-        @includeWhen(\Route::currentRouteName() != 'auth.get','partials.navbar')
+    @includeWhen( request()->route()->getPrefix() != '/auth','partials.navbar')
     @endauth
-    
+
 
     <div id="app">
-    
+
         @yield('content')
 
     </div>

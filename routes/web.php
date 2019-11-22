@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('', 'Auth\\LoginController@showLoginForm')->name('auth.get');
@@ -19,10 +19,16 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('', 'Auth\\LoginController@login')->name('auth.post');
 
     Route::get('logout', 'Auth\\LoginController@logout')->name('auth.logout');
+
+    Route::get('change-password', 'Auth\\ChangePasswordController@showForm')->name('auth.change-password');
+
+    Route::post('change-password', 'Auth\\ChangePasswordController@changePassword')->name('auth.change-password.change');
 });
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'user.default-password']], function () {
+
+    Route::get('/', 'HomeController@index')->name('home');
 
     Route::resource('roles', 'RoleController');
 
