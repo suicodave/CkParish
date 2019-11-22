@@ -57,7 +57,8 @@ class CreateAdmin extends Command
         $credentials = [
             'email' => $email,
             'name' => $name,
-            'password' => bcrypt($password)
+            'password' => bcrypt($password),
+            'has_changed_default_password' => 1
         ];
 
 
