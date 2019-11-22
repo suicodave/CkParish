@@ -35,7 +35,7 @@
 
                 <div class="col-9 px-5">
                     <div class="row">
-                        @include('partials.permission.checkbox')
+                        @include('permission.checkbox')
                     </div>
 
                 </div>
@@ -67,7 +67,7 @@
 
                 <div class="col-9 px-5">
                     <div class="row">
-                        @include('partials.permission.checkbox',[
+                        @include('permission.checkbox',[
                         'existingPermissions'=>$rolePermissionNames
                         ])
                     </div>

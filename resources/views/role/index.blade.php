@@ -20,7 +20,7 @@
             </a>
         </div>
         <div class="col-12">
-            @include('partials.role.table',['roles'=>$roles])
+            @include('role.table',['roles'=>$roles])
         </div>
     </div>
 </div>
