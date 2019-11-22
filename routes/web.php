@@ -27,4 +27,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('roles', 'RoleController');
 
     Route::resource('permissions', 'PermissionController')->only('index');
+
+    Route::resource('users', 'UserController');
 });
