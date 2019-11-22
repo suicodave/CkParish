@@ -1,4 +1,4 @@
-<div class="table-wrapper mb-5">
+<div class="table-wrapper mb-3">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -24,7 +24,7 @@
 
 <div class="float-right">
 
-    {{-- {{$permissions->links()}} --}}
+    {{$roles->links()}}
 </div>
 
 <style>

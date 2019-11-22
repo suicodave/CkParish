@@ -13,7 +13,7 @@
     <div class="row ">
 
         <div class="col-3">
-            <a href="" class="btn btn-primary">
+            <a href="{{route('roles.create')}}" class="btn btn-primary">
                 <span class="mr-1">New</span>
 
                 <span class="fa fa-plus"></span>
