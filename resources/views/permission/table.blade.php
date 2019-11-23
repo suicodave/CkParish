@@ -12,7 +12,7 @@
       @foreach ($permissions as $permission)
       <tr>
         <th>{{$permission->id}}</th>
-        <td>{{$permission->name}}</td>
+        <td>{{ucwords($permission->name)}}</td>
         <td>{{$permission->created_at->toDayDateTimeString()}}</td>
         <td>{{$permission->updated_at->toDayDateTimeString()}}</td>
       </tr>

@@ -9,6 +9,6 @@ $permissions = App\Permission::oldest('name')->get(['name']);
         id="exampleCheck{{$loop->index}}" @isset($existingPermissions)
         {{ in_array($permission->name,$existingPermissions) && isset($existingPermissions) ? 'checked' : 'false' }}
         @endisset>
-    <label class="form-check-label" for="exampleCheck{{$loop->index}}">{{$permission->name}}</label>
+    <label class="form-check-label" for="exampleCheck{{$loop->index}}">{{ucwords($permission->name)}}</label>
 </div>
 @endforeach
