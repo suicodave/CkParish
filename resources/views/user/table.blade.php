@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th class="bg-white" scope="col">#</th>
+                <th class="bg-white" scope="col">Email</th>
                 <th class="bg-white" scope="col">Name</th>
                 <th class="bg-white" scope="col">Created At</th>
                 <th class="bg-white" scope="col">Last Update</th>
@@ -14,6 +15,9 @@
                 <th>
                     {{$user->id}}
                 </th>
+                <td>
+                    {{$user->email}}
+                </td>
                 <td>
                     <a href="{{route('users.show',[
                         'user'=>$user->id
