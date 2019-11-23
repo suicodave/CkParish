@@ -19,6 +19,12 @@
         <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
+                <span class="nav-link">
+                    {{Auth::user()->email}}
+                </span>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('auth.logout')}}">
                     <span class="fa fa-sign-out-alt text-white"></span>
                 </a>
