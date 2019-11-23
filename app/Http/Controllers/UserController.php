@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::select(['id', 'name', 'created_at', 'updated_at'])->latest('id')->paginate();
+        $users = User::select(['id', 'email', 'name', 'created_at', 'updated_at'])->latest('id')->paginate();
 
         return view('user.index', [
             'users' => $users
@@ -55,6 +55,8 @@ class UserController extends Controller
         ];
 
         $user = User::create($attributes);
+
+        $user->syncPermissions($request->permissions);
 
         return redirect()->route('users.index');
     }
