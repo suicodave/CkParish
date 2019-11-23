@@ -45,7 +45,19 @@
                 <input type="submit" class="btn btn-primary col-12" value="Create">
             </div>
 
+
             <div class="col-8">
+                <div class="col-12 mb-5">
+                    <div class="row mb-2">
+                        <h3>Roles</h3>
+                    </div>
+                    <div class="row">
+                        @include('role.checkbox')
+                    </div>
+                </div>
+
+                <hr>
+
                 <div class="col-12">
                     <div class="row mb-2">
                         <h3>Direct Permissions</h3>
@@ -54,7 +66,13 @@
                         @include('permission.checkbox')
                     </div>
                 </div>
+
             </div>
+
+
+
+
+
         </div>
 
     </form>
