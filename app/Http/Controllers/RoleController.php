@@ -37,7 +37,7 @@ class RoleController extends Controller
 
     function show(Role $role)
     {
-        $role->load('permissions:name,id');
+        $role->load('permissions:name');
 
         $rolePermissionNames = (array) $role->permissions->pluck('name')->all();
 

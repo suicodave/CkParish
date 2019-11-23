@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -14,7 +17,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::select(['id', 'email', 'name', 'created_at', 'updated_at'])->latest('id')->paginate();
+        $users = User::nonAdministrator()->select([
+            'id',
+            'email',
+            'first_name',
+            'middle_name',
+            'last_name',
+            'created_at',
+            'updated_at'
+        ])->latest('id')->paginate();
 
         return view('user.index', [
             'users' => $users
@@ -41,18 +52,20 @@ class UserController extends Controller
     {
         $request->validate([
             'email' => 'required|email|unique:users,email',
-            'firstname' => 'required',
-            'middlename' => 'required',
-            'lastname' => 'required'
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required'
         ]);
 
-        $name = "{$request->firstname} {$request->middlename} {$request->lastname}";
 
-        $attributes = [
-            'name' => $name,
-            'email' => $request->email,
-            'password' => bcrypt(config('user.default_password'))
-        ];
+        $attributes = $request->only(
+            'first_name',
+            'middle_name',
+            'last_name',
+            'email'
+        );
+
+        $attributes['password'] = bcrypt($request->password);
 
         $user = User::create($attributes);
 
@@ -69,20 +82,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
-    }
+        if ($user->hasRole(Role::ADMINISTRATOR)) {
+            throw (new ModelNotFoundException())->setModel(get_class($user));
+        }
+        $user->load(['roles:name', 'permissions:name']);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $userRoleNames = (array) $user->roles->pluck('name')->all();
+
+        $userPermissionNames = (array) $user->permissions->pluck('name')->all();
+
+        return view('user.create', [
+            'userRoleNames' => $userRoleNames,
+            'userPermissionNames' => $userPermissionNames,
+            'user' => $user
+        ]);
     }
 
     /**
@@ -92,9 +107,36 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($user->id)
+            ],
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required'
+        ]);
+
+
+        $attributes = $request->only(
+            'first_name',
+            'middle_name',
+            'last_name',
+            'email'
+        );
+
+        $attributes['password'] = bcrypt($request->password);
+
+        $user->update($attributes);
+
+        $user->syncPermissions($request->permissions);
+
+        $user->syncRoles($request->roles);
+
+        return redirect()->route('users.index');
     }
 
     /**

@@ -2,8 +2,10 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -12,9 +14,31 @@ class User extends Authenticatable
 
 
 
-    function setNameAttribute($value)
+    function getNameAttribute()
     {
-        $this->attributes['name'] = ucwords($value);
+        return ucwords("{$this->first_name}  {$this->middle_name} {$this->last_name}");
+    }
+
+    function getFirstNameAttribute($value)
+    {
+        return ucwords($value);
+    }
+
+    function getMiddleNameAttribute($value)
+    {
+        return ucwords($value);
+    }
+
+    function getLastNameAttribute($value)
+    {
+        return ucwords($value);
+    }
+
+    function scopeNonAdministrator($query)
+    {
+        return $query->whereDoesntHave('roles', function (Builder $q) {
+            return $q->where('name', Role::ADMINISTRATOR);
+        });
     }
     /**
      * The attributes that are mass assignable.
@@ -22,7 +46,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'has_changed_default_password'
+        'first_name',
+        'middle_name',
+        'last_name',
+        'email',
+        'password',
+        'has_changed_default_password',
+
     ];
 
     /**

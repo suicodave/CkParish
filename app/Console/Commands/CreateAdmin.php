@@ -52,11 +52,14 @@ class CreateAdmin extends Command
 
         $confirmPassword = $this->secret('Confirm Password');
 
-        $name = 'Super User';
+        $firstName = 'Super';
+
+        $lastName = 'User';
 
         $credentials = [
             'email' => $email,
-            'name' => $name,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
             'password' => bcrypt($password),
             'has_changed_default_password' => 1
         ];
