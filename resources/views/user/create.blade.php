@@ -52,7 +52,7 @@
 
                 </div>
 
-                <input type="submit" class="btn btn-primary col-12" value="Create">
+                <input type="submit" class="btn btn-primary col-12" value="{{isset($user) ? 'Update': 'Create'}}">
             </div>
 
 
