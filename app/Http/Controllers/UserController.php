@@ -65,7 +65,7 @@ class UserController extends Controller
             'email'
         );
 
-        $attributes['password'] = bcrypt($request->password);
+        $attributes['password'] = bcrypt(config('user.default_password'));
 
         $user = User::create($attributes);
 
