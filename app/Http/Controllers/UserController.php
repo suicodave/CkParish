@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Role;
+use App\StaticPermission;
 use App\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -10,6 +11,16 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+
+    function __construct()
+    {
+        $this->checkRoleOrPermissions(StaticPermission::VIEW_USER_COMPONENT)->only(['index', 'show']);
+
+        $this->checkRoleOrPermissions(StaticPermission::CREATE_USER)->only('store',['create']);
+
+        $this->checkRoleOrPermissions(StaticPermission::UPDATE_USER)
+            ->only('update');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -128,8 +139,6 @@ class UserController extends Controller
             'email'
         );
 
-        $attributes['password'] = bcrypt($request->password);
-
         $user->update($attributes);
 
         $user->syncPermissions($request->permissions);
@@ -137,16 +146,5 @@ class UserController extends Controller
         $user->syncRoles($request->roles);
 
         return redirect()->route('users.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

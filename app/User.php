@@ -40,6 +40,12 @@ class User extends Authenticatable
             return $q->where('name', Role::ADMINISTRATOR);
         });
     }
+
+    function hasModule($permission)
+    {
+
+        return $this->hasPermissionTo($permission) || $this->hasRole(Role::ADMINISTRATOR);
+    }
     /**
      * The attributes that are mass assignable.
      *

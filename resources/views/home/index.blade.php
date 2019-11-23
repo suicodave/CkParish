@@ -10,7 +10,13 @@
 
     </div>
     <div class="row">
+        @php
+        $user = Auth::user()
+        @endphp
+
         @foreach (App\UserModule::modules() as $module)
+
+        @if ($user->hasModule($module['permission']))
         <div class="col-3 d-flex align-items-stretch">
             <div class="card text-white bg-dark   mb-4">
 
@@ -37,6 +43,8 @@
                 </div>
             </div>
         </div>
+        @endif
+
         @endforeach
     </div>
 
