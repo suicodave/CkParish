@@ -1,5 +1,5 @@
 <div class="table-wrapper mb-5">
-  <table class="table table-hover">
+  <table class="table table-borderless table-hover">
     <thead>
       <tr>
         <th class="bg-white" scope="col">#</th>
@@ -22,20 +22,4 @@
 </div>
 
 
-<div class="float-right">
 
-  {{$permissions->links()}}
-</div>
-
-<style>
-  .table-wrapper {
-    height: 20em;
-    overflow: auto;
-  }
-
-  table thead th {
-    position: sticky;
-    top: 0;
-    border-top: 0 !important;
-  }
-</style>
