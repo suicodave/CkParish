@@ -5,7 +5,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-12 mb-3">
-            <h2 class="text-center">Components</h2>
+            <h2 class="text-center text-heading">Components</h2>
         </div>
 
     </div>
@@ -18,15 +18,13 @@
 
         @if ($user->hasModule($module['permission']))
         <div class="col-3 d-flex align-items-stretch">
-            <div class="card text-white bg-dark   mb-4">
+            <div class="card text-dark shadow-sm     mb-4">
 
-                <div class="card-header">
-                    <h5 class="card-title">
-                        {{$module['name']}}
-                    </h5>
-                </div>
 
                 <div class="card-body">
+                    <h5 class="card-title text-heading">
+                        {{$module['name']}}
+                    </h5>
                     <div class="description-wrapper">
                         <p class="card-text ">
                             {{$module['description']}}

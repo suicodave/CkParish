@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
-<body class="">
+<body class="background">
 
     @auth
     @includeWhen( request()->route()->getPrefix() != '/auth','partials.navbar')

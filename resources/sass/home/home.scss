@@ -1,0 +1,18 @@
+.background {
+    background-color: $body-bg;
+}
+
+.text-heading {
+    color: #5e5e5e !important;
+}
+
+.table-wrapper {
+    height: 18em;
+    overflow: auto;
+}
+
+table thead th {
+    position: sticky;
+    top: 0;
+    border-top: 0 !important;
+}
