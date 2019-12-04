@@ -1,11 +1,11 @@
 <div class="table-wrapper mb-3">
-    <table class="table table-hover">
+    <table class="table table-borderless table-hover">
         <thead>
             <tr>
-                <th class="bg-white" scope="col">#</th>
-                <th class="bg-white" scope="col">Name</th>
-                <th class="bg-white" scope="col">Created At</th>
-                <th class="bg-white" scope="col">Last Update</th>
+                <th class="bg-white text-heading" scope="col">#</th>
+                <th class="bg-white text-heading" scope="col">Name</th>
+                <th class="bg-white text-heading" scope="col">Created At</th>
+                <th class="bg-white text-heading" scope="col">Last Update</th>
             </tr>
         </thead>
         <tbody>
@@ -26,22 +26,3 @@
         </tbody>
     </table>
 </div>
-
-
-<div class="float-right">
-
-    {{$roles->links()}}
-</div>
-
-<style>
-    .table-wrapper {
-        height: 20em;
-        overflow: auto;
-    }
-
-    table thead th {
-        position: sticky;
-        top: 0;
-        border-top: 0 !important;
-    }
-</style>
