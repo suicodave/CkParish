@@ -20,7 +20,7 @@ class ProvinceSeeder extends Seeder
         $provinces = $this->provinceGenerator();
 
         foreach ($provinces as $province) {
-            Province::create($province);
+            Province::firstOrCreate($province);
         }
     }
 
