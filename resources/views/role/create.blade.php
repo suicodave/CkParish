@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container mt-5">
+<div class="container p-3 mt-1">
     <div class=" h-100 mb-5">
 
         @if($errors->all())
@@ -16,68 +16,82 @@
         </div>
         @endif
 
-        @empty($role)
-        <form method="POST" class="col-12" action="{{route('roles.store')}}">
-            <div class="row">
-                <div class="col-3">
-                    @csrf
-                    <div class="form-group">
-                        <label for="permissionName">Name</label>
-                        <input type="text" class="form-control" name="name" id="permissionName"
-                            placeholder="Enter Role Name">
 
-                    </div>
-
-                    <button type="submit" class="btn col-12 btn-primary">Create</button>
-
-
-                </div>
-
-                <div class="col-9 px-5">
-                    <div class="row">
-                        @include('permission.checkbox')
-                    </div>
-
-                </div>
-            </div>
-
-
-        </form>
-        @endempty
-
-        @isset($role)
-        <form method="POST" class="col-12" action="{{route('roles.update',[
+        <form method="POST" class="col-12" @empty($role) action="{{route('roles.store')}}" @endempty @isset($role)
+            action="{{route('roles.update',[
             'role'=>$role->id
-        ])}}">
+        ])}}" @endisset>
             <div class="row">
-                <div class="col-3">
-                    @method('PUT')
-                    @csrf
-                    <div class="form-group">
-                        <label for="permissionName">Name</label>
-                        <input type="text" class="form-control" name="name" id="permissionName" value="{{$role->name}}"
-                            placeholder="Enter Role Name">
+                <div class="col-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="col-12">
+                                <h3 class="card-title text-heading">
+                                    New Role
+                                </h3>
+                            </div>
 
+                            <div class="col-12">
+                                @isset($role)
+                                @method('PUT')
+                                @endisset
+                                @csrf
+                                <div class="form-group">
+                                    <label for="permissionName">Name</label>
+                                    <input type="text" class="form-control" name="name" id="permissionName"
+                                        @isset($role) value="{{$role->name}}" @endisset placeholder="Enter Role Name">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn col-12 btn-primary">
+                                @empty($role)
+                                Create
+                                @endempty
+
+                                @isset($role)
+                                Update
+                                @endisset
+                            </button>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn col-12 btn-primary">Update</button>
 
 
                 </div>
 
-                <div class="col-9 px-5">
-                    <div class="row">
-                        @include('permission.checkbox',[
-                        'existingPermissions'=>$rolePermissionNames
-                        ])
+
+
+
+                <div class="col-8 px-5">
+                    <div class="card shadow-sm card-body">
+                        <h3 class="text-heading">
+                            Permissions
+                        </h3>
+
+                        <div class="col-12">
+                            <div class="row">
+                                @empty($role)
+                                @include('permission.checkbox')
+                                @endempty
+
+                                @isset($role)
+                                @include('permission.checkbox',[
+                                'existingPermissions'=>$rolePermissionNames
+                                ])
+                                @endisset
+
+                            </div>
+                        </div>
                     </div>
 
                 </div>
             </div>
 
-
         </form>
-        @endisset
+
 
     </div>
 </div>
