@@ -5,14 +5,17 @@
 <div class="container p-3 mt-1">
 
     @if($errors->all())
-    <div class="alert alert-danger col-12" role="alert">
-        @foreach($errors->all() as $message)
+    <div class="">
+        <div class="alert alert-danger " role="alert">
+            @foreach($errors->all() as $message)
 
-        {{$message}}
+            {{$message}}
 
-        <br>
-        @endforeach
+            <br>
+            @endforeach
+        </div>
     </div>
+
     @endif
     <form method="POST" @empty($user) action="{{route('users.store')}}" @endempty @isset($user) action="{{route('users.update',[
         'user'=>$user->id
@@ -71,7 +74,7 @@
 
 
             <div class="col">
-                <div class=" col-12 mb-4">
+                <div class="  mb-4">
                     <div class="card shadow-sm card-body">
                         <h3 class="text-heading">
                             Roles
@@ -93,7 +96,7 @@
 
                 </div>
 
-                <div class="col-12 mt-4">
+                <div class="mt-4">
                     <div class="card shadow-sm card-body">
                         <h3 class="text-heading">
                             Direct Permissions
