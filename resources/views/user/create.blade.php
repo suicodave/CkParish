@@ -54,12 +54,16 @@
                                 value="{{$user->last_name}}" @endisset>
                         </div>
 
-                        <div class="card-footer">
-                            <div class="col-12 mt-3">
-                                <input type="submit" class="btn btn-primary col-12"
-                                    value="{{isset($user) ? 'Update': 'Create'}}">
-                            </div>
+
+                    </div>
+
+                    <div class="card-footer">
+
+                        <div class="col-12">
+                            <input type="submit" class="btn btn-primary col-12"
+                                value="{{isset($user) ? 'Update': 'Create'}}">
                         </div>
+
                     </div>
                 </div>
 
