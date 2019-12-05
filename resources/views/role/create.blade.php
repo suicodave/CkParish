@@ -6,7 +6,7 @@
     <div class=" h-100 mb-5">
 
         @if($errors->all())
-        <div class="alert alert-danger col-12" role="alert">
+        <div class="alert alert-danger" role="alert">
             @foreach($errors->all() as $message)
 
             {{$message}}
@@ -17,8 +17,7 @@
         @endif
 
 
-        <form method="POST" class="col-12" @empty($role) action="{{route('roles.store')}}" @endempty @isset($role)
-            action="{{route('roles.update',[
+        <form method="POST" @empty($role) action="{{route('roles.store')}}" @endempty @isset($role) action="{{route('roles.update',[
             'role'=>$role->id
         ])}}" @endisset>
             <div class="row">
@@ -65,7 +64,7 @@
 
 
 
-                <div class="col-8 px-5">
+                <div class="col">
                     <div class="card shadow-sm card-body">
                         <h3 class="text-heading">
                             Permissions

@@ -5,16 +5,16 @@
 <div class="container p-3 mt-1">
 
     @if($errors->all())
-    <div class="">
-        <div class="alert alert-danger " role="alert">
-            @foreach($errors->all() as $message)
 
-            {{$message}}
+    <div class="alert alert-danger " role="alert">
+        @foreach($errors->all() as $message)
 
-            <br>
-            @endforeach
-        </div>
+        {{$message}}
+
+        <br>
+        @endforeach
     </div>
+
 
     @endif
     <form method="POST" @empty($user) action="{{route('users.store')}}" @endempty @isset($user) action="{{route('users.update',[
