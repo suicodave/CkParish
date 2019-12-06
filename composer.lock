@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66f76cca97025a598d44919d114cfb70",
+    "content-hash": "d0331f0badf3ab5c519f458647b7bf79",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3154,6 +3154,38 @@
             "time": "2019-08-29T07:01:03+00:00"
         },
         {
+            "name": "davedev/customer",
+            "version": "1",
+            "dist": {
+                "type": "path",
+                "url": "C:/xampp/htdocs/packages/Customer",
+                "reference": "d62a5edfde8838a34cf1d6db7947929c480f82fd"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Davedev\\Customer\\Providers\\CustomerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Davedev\\Customer\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "suicodave",
+                    "email": "suico.dave@gmail.com"
+                }
+            ],
+            "description": "Customer Registration",
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.3.0",
             "source": {
@@ -5254,7 +5286,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "davedev/customer": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
