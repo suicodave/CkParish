@@ -25,6 +25,12 @@ class UserModule
                 'link' => route('permissions.index'),
                 'permission' => StaticPermission::VIEW_PERMISSION_COMPONENT
             ],
+            [
+                'name' => 'Confirmation Registry',
+                'description' => 'Manage confirmees including certificate issuances.',
+                'link' => route('confirmations.index'),
+                'permission' => StaticPermission::VIEW_CONFIRMATION_COMPONENT
+            ]
 
         ];
     }
