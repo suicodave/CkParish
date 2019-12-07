@@ -18,7 +18,7 @@
 
                     <div class="col-12">
 
-                        @include($tableName,[$tableKey=>$users])
+                        @include($tableName,[$tableKey=>$collection])
 
                         <div class="row">
                             @if ($createLink)
