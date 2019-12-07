@@ -1,5 +1,5 @@
 <div class="table-wrapper mb-3">
-    <table class="table table-hover table-borderless">
+    <table class="table table-hover ">
         <thead>
             <tr>
                 <th class="bg-white text-heading" scope="col">#</th>
@@ -11,7 +11,7 @@
         </thead>
         <tbody>
             @foreach ($users as $user)
-            <tr>
+            <tr  >
                 <th>
                     {{$user->id}}
                 </th>

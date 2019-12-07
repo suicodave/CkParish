@@ -1,5 +1,5 @@
-<div class="table-wrapper mb-5">
-  <table class="table table-borderless table-hover">
+<div class="table-wrapper">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th class="bg-white text-heading" scope="col">#</th>

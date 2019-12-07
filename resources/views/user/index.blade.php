@@ -10,7 +10,7 @@
 
 
             <div class="card-body">
-                <h3 class="card-title text-heading mb-3">
+                <h3 class="card-title text-heading mb-1">
                     Users
                 </h3>
                 <div class="row ">

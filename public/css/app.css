@@ -16988,7 +16988,7 @@ readers do not read off random characters that represent icons */
 }
 
 .table-wrapper {
-  height: 18em;
+  max-height: 18em;
   overflow: auto;
 }
 
