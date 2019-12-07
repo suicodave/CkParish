@@ -6,7 +6,7 @@
 
 <div class="container mt-5 ">
     <div class="col-10 offset-1">
-        <div class="card shadow ">
+        <div class="card shadow-sm">
 
 
             <div class="card-body">

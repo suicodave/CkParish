@@ -4,7 +4,7 @@
 @section('content')
 <div class="container mt-5 ">
     <div class="col-10 offset-1">
-        <div class="card shadow">
+        <div class="card shadow-sm">
             <div class="card-body">
                 <h2 class="card-title text-heading mb-1">
                     Roles
