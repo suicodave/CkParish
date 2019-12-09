@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
 
 
 Route::group(['prefix' => 'auth'], function () {
@@ -35,4 +36,6 @@ Route::group(['middleware' => ['auth', 'user.default-password']], function () {
     Route::resource('permissions', 'PermissionController')->only('index');
 
     Route::resource('users', 'UserController');
+
+    Route::resource('confirmations', 'ConfirmationController');
 });
