@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+    protected $with = [
+        'user'
+    ];
+
     protected $fillable = [
         'first_name',
         'middle_name',

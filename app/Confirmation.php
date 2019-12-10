@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Confirmation extends Model
 {
+    protected $with = [
+        'customer'
+    ];
+    
     protected $fillable = [
         'customer_id',
         'priest_name',
