@@ -18,4 +18,24 @@ class Customer extends Model
     {
         return $this->belongsTo('App\User', 'created_by');
     }
+
+    function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->middle_name} {$this->last_name}";
+    }
+
+    function getFirstNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    function getMiddleNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    function getLastNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }

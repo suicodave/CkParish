@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Confirmation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConfirmationController extends Controller
 {
@@ -45,7 +46,15 @@ class ConfirmationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userId = Auth::id();
+
+        $attributes = $request->all();
+
+        $attributes['created_by'] = $userId;
+
+        $this->confirmation->create($attributes);
+
+        return redirect()->route('confirmations.index');
     }
 
     /**
