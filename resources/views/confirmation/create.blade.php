@@ -58,7 +58,8 @@ $faker = Faker\Factory::create() ;
                         <div class="row">
                             <div class="form-group col-6 mt-3">
                                 <label for="pn">Priest Name</label>
-                                <input id="pn" class="form-control" type="text" name="priest_name">
+                                <input id="pn" class="form-control" type="text" name="priest_name"
+                                    placeholder="Ex. {{$faker->name}}">
                             </div>
 
                             <div class="form-group col-6 mt-3">
