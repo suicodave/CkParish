@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Confirmation as AppConfirmation;
-use App\Customer;
 
 class Confirmation extends BaseRepository
 {
@@ -11,7 +10,7 @@ class Confirmation extends BaseRepository
 
     function create($attributes)
     {
-        $customer = Customer::create($attributes);
+        $customer = $this->createCustomer($attributes);
 
         $attributes['customer_id'] = $customer->id;
 
