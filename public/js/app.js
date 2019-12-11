@@ -49442,6 +49442,9 @@ Vue.component('datetime-notifier', __webpack_require__(/*! ./components/common/D
 var app = new Vue({
   el: '#app'
 });
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
 
 /***/ }),
 
