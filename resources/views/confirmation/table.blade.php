@@ -4,8 +4,8 @@
 'Confirmee',
 'Priest',
 'Confirmation Date',
-'Created At',
-'Last Updated'
+'Last Updated',
+'Action'
 ]
 ])
 
@@ -38,16 +38,6 @@
 
     <td>
         <div class="block">
-            {{$confirmation->created_at->toFormattedDateString()}}
-        </div>
-
-        <div class="block text-muted">
-            <small>{{$confirmation->created_time}}</small>
-        </div>
-    </td>
-
-    <td>
-        <div class="block">
             {{$confirmation->updated_at->toFormattedDateString()}}
         </div>
 
@@ -55,6 +45,28 @@
             <small>{{$confirmation->updated_time}}</small>
         </div>
     </td>
+
+    <td>
+
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="{{route('confirmations.print-preview',[
+                'confirmation'=>$confirmation->id
+            ])}} " class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Print Preview">
+                <span class="fas fa-eye"></span>
+            </a>
+
+            <a href="{{route('confirmations.show',[
+                'confirmation'=>$confirmation->id
+            ])}} " class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit">
+                <span class="fas fa-edit"></span>
+            </a>
+        </div>
+
+    </td>
+
 </tr>
+
+
 @endforeach
 @endsection

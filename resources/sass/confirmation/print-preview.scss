@@ -1,0 +1,64 @@
+.print-preview {
+
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+
+
+
+    .preview-body {
+        width: 100%;
+        height: 100%;
+        padding: 2em;
+        box-sizing: border-box;
+        position: relative;
+        background-color: #f5f3f3 !important;
+
+        
+        .footer {
+            position: absolute;
+            bottom: 0;
+        }
+
+        .diocese-placeholder {
+            font-size: 3em !important;
+        }
+
+        .cert-label {
+            margin-top: 5em !important;
+
+
+        }
+
+        .certificate-of-phrase {
+            font-size: 5em !important;
+            font-family: "Brush Script MT", cursive;
+        }
+
+        .confirmation-word {
+            font-family: "Brush Script MT", cursive;
+            font-size: 8em !important;
+        }
+
+        .metadata-label {
+            font-size: .6em;
+        }
+
+        .confirmation-details {
+            min-height: 18em !important;
+        }
+    }
+
+
+    .watermark {
+        position: fixed;
+        height: 50em;
+        width: 50em;
+        top: 15em;
+        opacity: .2;
+        background-size: cover;
+        background-position: center center;
+    }
+
+}

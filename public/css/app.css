@@ -17012,3 +17012,60 @@ table thead th {
   background-attachment: fixed;
 }
 
+.print-preview {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.print-preview .preview-body {
+  width: 100%;
+  height: 100%;
+  padding: 2em;
+  box-sizing: border-box;
+  position: relative;
+  background-color: #f5f3f3 !important;
+}
+
+.print-preview .preview-body .footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.print-preview .preview-body .diocese-placeholder {
+  font-size: 3em !important;
+}
+
+.print-preview .preview-body .cert-label {
+  margin-top: 5em !important;
+}
+
+.print-preview .preview-body .certificate-of-phrase {
+  font-size: 5em !important;
+  font-family: "Brush Script MT", cursive;
+}
+
+.print-preview .preview-body .confirmation-word {
+  font-family: "Brush Script MT", cursive;
+  font-size: 8em !important;
+}
+
+.print-preview .preview-body .metadata-label {
+  font-size: 0.6em;
+}
+
+.print-preview .preview-body .confirmation-details {
+  min-height: 18em !important;
+}
+
+.print-preview .watermark {
+  position: fixed;
+  height: 50em;
+  width: 50em;
+  top: 15em;
+  opacity: 0.2;
+  background-size: cover;
+  background-position: center center;
+}
+

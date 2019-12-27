@@ -38,4 +38,6 @@ Route::group(['middleware' => ['auth', 'user.default-password']], function () {
     Route::resource('users', 'UserController');
 
     Route::resource('confirmations', 'ConfirmationController');
+
+    Route::get('confirmations/print-previews/{confirmation}', 'ConfirmationPrintPreviewController@show')->name('confirmations.print-preview');
 });
