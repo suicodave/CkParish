@@ -56,7 +56,7 @@
                 <span class="fas fa-eye"></span>
             </a>
 
-            <a href="{{route('confirmations.show',[
+            <a href="{{route('confirmations.edit',[
                 'confirmation'=>$confirmation->id
             ])}} " class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit">
                 <span class="fas fa-edit"></span>
