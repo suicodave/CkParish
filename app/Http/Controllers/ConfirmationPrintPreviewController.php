@@ -10,17 +10,15 @@ class ConfirmationPrintPreviewController extends Controller
 {
     function show(Confirmation $confirmation)
     {
+        $confirmation->load('sponsors');
+
         $faker = Factory::create();
 
         $config = config('confirmation');
 
         $watermark = asset('flame.svg');
 
-        $sponsors = [];
-
-        for ($i = 0; $i < 15; $i++) {
-            $sponsors[] = $faker->name;
-        }
+        $sponsors = $confirmation->sponsors->pluck('name')->all();
 
         $sponsors = array_chunk($sponsors, 4);
 
@@ -40,11 +38,5 @@ class ConfirmationPrintPreviewController extends Controller
 
 
         return $pdf->stream('Confirmation.pdf');
-
-        // return view('confirmation.print-preview.index', [
-        //     'confirmation' => $confirmation,
-        //     'config' => $config,
-        //     'faker' => $faker
-        // ]);
     }
 }

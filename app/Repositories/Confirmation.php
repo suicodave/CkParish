@@ -16,6 +16,10 @@ class Confirmation extends BaseRepository
 
         $confirmation = $this->model::create($attributes);
 
+        $sponsors = $this->prepareSponsorNames($attributes['sponsors']);
+
+        $confirmation->sponsors()->createMany($sponsors);
+
         return $confirmation;
     }
 }

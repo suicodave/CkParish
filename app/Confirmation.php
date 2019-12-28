@@ -10,7 +10,7 @@ class Confirmation extends Model
     protected $with = [
         'customer'
     ];
-    
+
     protected $fillable = [
         'customer_id',
         'priest_name',
@@ -20,6 +20,11 @@ class Confirmation extends Model
     function customer()
     {
         return $this->belongsTo('App\Customer');
+    }
+
+    function sponsors()
+    {
+        return $this->morphMany('App\Sponsor', 'sponsorable');
     }
 
     function getConfirmationDateAttribute($value)
