@@ -17017,6 +17017,7 @@ table thead th {
   width: 100%;
   box-sizing: border-box;
   position: relative;
+  background-color: white !important;
 }
 
 .print-preview .preview-body {
@@ -17025,7 +17026,6 @@ table thead th {
   padding: 2em;
   box-sizing: border-box;
   position: relative;
-  background-color: #f5f3f3 !important;
 }
 
 .print-preview .preview-body .footer {
