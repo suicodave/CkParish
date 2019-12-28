@@ -79,7 +79,7 @@
 
                         <p class="text-center"> Administered By:</p>
 
-                        <p class="text-center">Most Rev. {{$faker->name}}</p>
+                        <p class="text-center">Most {{$confirmation->priest_name}}</p>
 
                         <p>
                             According to the Rite of the Roman Catholic Church

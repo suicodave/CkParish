@@ -1,8 +1,13 @@
 <template>
   <div>
     <div class="col-12 mb-3" id="app">
-      Sponsors
-      <button class="btn btn-primary" type="button" v-on:click="addSponsor()">
+      {{formlabel}}
+      <button
+        v-if="!disablecontrol"
+        class="btn btn-primary"
+        type="button"
+        v-on:click="addSponsor()"
+      >
         <span class="fa fa-plus"></span>
         Add
       </button>
@@ -15,12 +20,11 @@
           v-bind:id="index"
           v-model="item.value"
           class="form-control"
-          placeholder="Sponsor's name"
-          aria-label="Sponsor's name"
           aria-describedby="basic-addon2"
-          name="sponsors[]"
+          v-bind:name="inputname"
+          v-bind:disabled="disablecontrol"
         />
-        <div class="input-group-append">
+        <div class="input-group-append" v-if="!disablecontrol">
           <button class="btn btn-danger" v-on:click="removeSponsor(index)" type="button">Remove</button>
         </div>
       </div>
@@ -30,16 +34,18 @@
 
 <script>
 export default {
+  props: ["sponsorsprop", "disablecontrol", "formlabel", "inputname"],
   data() {
     return {
       sponsors: []
     };
   },
+  mounted: function() {
+    this.sponsors = this.sponsorsprop || [];
+  },
 
   methods: {
     addSponsor: function() {
-      const arrayLength = this.sponsors.length;
-
       this.sponsors.push({ value: "" });
     },
     removeSponsor: function(index) {

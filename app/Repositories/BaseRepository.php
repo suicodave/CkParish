@@ -18,6 +18,11 @@ class BaseRepository
         return $this->model::latest()->paginate($items);
     }
 
+    function find($id)
+    {
+        return $this->model::find($id);
+    }
+
     function createCustomer($attributes)
     {
         $customer = Customer::create($attributes);
@@ -27,6 +32,9 @@ class BaseRepository
 
     function prepareNameList($names)
     {
+        $names = array_filter($names, function ($name) {
+            return trim($name) != '';
+        });
         return array_map(function ($name) {
             return [
                 'name' => $name
@@ -38,4 +46,5 @@ class BaseRepository
     {
         return $this->prepareNameList($names);
     }
+
 }

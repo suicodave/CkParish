@@ -1901,15 +1901,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["sponsorsprop", "disablecontrol", "formlabel", "inputname"],
   data: function data() {
     return {
       sponsors: []
     };
   },
+  mounted: function mounted() {
+    this.sponsors = this.sponsorsprop || [];
+  },
   methods: {
     addSponsor: function addSponsor() {
-      var arrayLength = this.sponsors.length;
       this.sponsors.push({
         value: ""
       });
@@ -37324,23 +37331,25 @@ var render = function() {
     "div",
     [
       _c("div", { staticClass: "col-12 mb-3", attrs: { id: "app" } }, [
-        _vm._v("\n    Sponsors\n    "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { type: "button" },
-            on: {
-              click: function($event) {
-                return _vm.addSponsor()
-              }
-            }
-          },
-          [
-            _c("span", { staticClass: "fa fa-plus" }),
-            _vm._v("\n      Add\n    ")
-          ]
-        )
+        _vm._v("\n    " + _vm._s(_vm.formlabel) + "\n    "),
+        !_vm.disablecontrol
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.addSponsor()
+                  }
+                }
+              },
+              [
+                _c("span", { staticClass: "fa fa-plus" }),
+                _vm._v("\n      Add\n    ")
+              ]
+            )
+          : _vm._e()
       ]),
       _vm._v(" "),
       _vm._l(_vm.sponsors, function(item, index) {
@@ -37359,10 +37368,9 @@ var render = function() {
               attrs: {
                 type: "text",
                 id: index,
-                placeholder: "Sponsor's name",
-                "aria-label": "Sponsor's name",
                 "aria-describedby": "basic-addon2",
-                name: "sponsors[]"
+                name: _vm.inputname,
+                disabled: _vm.disablecontrol
               },
               domProps: { value: item.value },
               on: {
@@ -37375,21 +37383,23 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("div", { staticClass: "input-group-append" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-danger",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.removeSponsor(index)
-                    }
-                  }
-                },
-                [_vm._v("Remove")]
-              )
-            ])
+            !_vm.disablecontrol
+              ? _c("div", { staticClass: "input-group-append" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.removeSponsor(index)
+                        }
+                      }
+                    },
+                    [_vm._v("Remove")]
+                  )
+                ])
+              : _vm._e()
           ])
         ])
       })

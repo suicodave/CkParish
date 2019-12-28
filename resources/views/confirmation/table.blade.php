@@ -50,9 +50,9 @@
 
 
         <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="{{route('confirmations.print-preview',[
+            <a href="{{route('confirmations.show',[
                 'confirmation'=>$confirmation->id
-            ])}} " class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Print Preview">
+            ])}} " class="btn btn-success" data-toggle="tooltip" data-placement="top" title="View">
                 <span class="fas fa-eye"></span>
             </a>
 

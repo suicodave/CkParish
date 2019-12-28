@@ -18,6 +18,7 @@ class Customer extends Model
         'created_by'
     ];
 
+    
     function user()
     {
         return $this->belongsTo('App\User', 'created_by');

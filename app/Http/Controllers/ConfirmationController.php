@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Confirmation as AppConfirmation;
 use App\Repositories\Confirmation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,7 +66,11 @@ class ConfirmationController extends Controller
      */
     public function show($id)
     {
-        //
+        $confirmation = $this->confirmation->getConfirmation($id);
+
+        $confirmation['showOnly'] = true;
+
+        return view('confirmation.create', $confirmation);
     }
 
     /**
@@ -76,7 +81,9 @@ class ConfirmationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $confirmation = $this->confirmation->getConfirmation($id);
+
+        return view('confirmation.create', $confirmation);
     }
 
     /**
@@ -88,7 +95,11 @@ class ConfirmationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $attributes = $request->all();
+
+        $this->confirmation->update($attributes, $id);
+
+        return redirect()->route('confirmations.index');
     }
 
     /**

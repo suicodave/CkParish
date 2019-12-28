@@ -22,4 +22,42 @@ class Confirmation extends BaseRepository
 
         return $confirmation;
     }
+
+    function update($attributes, $id)
+    {
+        $confirmation = $this->model::find($id);
+
+        $confirmation->update($attributes);
+
+        $confirmation->customer->update($attributes);
+
+        $sponsors = $this->prepareSponsorNames($attributes['sponsors']);
+
+        $confirmation->sponsors()->delete();
+
+        $confirmation->sponsors()->createMany($sponsors);
+
+        return $confirmation;
+    }
+
+    function getConfirmation($id)
+    {
+        $confirmation = $this->model::find($id);
+
+        $sponsors = $confirmation
+            ->load(['sponsors'])
+            ->sponsors
+            ->pluck('name')
+            ->map(function ($sponsor) {
+                return [
+                    'value' => $sponsor
+                ];
+            })
+            ->all();
+
+        return [
+            'confirmation' => $confirmation,
+            'sponsors' => $sponsors
+        ];
+    }
 }
