@@ -7,7 +7,7 @@
         </ul>
     </div>
     <div class="mx-auto order-0">
-        <a id="app" class="navbar-brand mx-auto" href="#">
+        <a class="navbar-brand mx-auto" href="#">
 
             <datetime-notifier></datetime-notifier>
         </a>

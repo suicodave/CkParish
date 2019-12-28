@@ -13,12 +13,12 @@
 
 <body class="background">
 
-    @auth
-    @includeWhen( request()->route()->getPrefix() != '/auth','partials.navbar')
-    @endauth
-
 
     <div id="app">
+        @auth
+        @includeWhen( request()->route()->getPrefix() != '/auth','partials.navbar')
+        @endauth
+
 
         @yield('content')
 
