@@ -18,7 +18,7 @@
                 <div class="row my-5">
                     <div class="col-3">
                         <div class="logo-placeholder col-6 ">
-                            <img src="{{asset('ck logo.png')}}" height="120" width="120" alt="" srcset="">
+                            <img src="{{asset('ck logo.png')}}" height="120" width="130" alt="" srcset="">
                         </div>
                     </div>
 
