@@ -23,6 +23,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 Vue.component('datetime-notifier', require('./components/common/DateTimeNotifierComponent.vue').default);
 
+
+Vue.component('create-sponsor-input', require('./components/common/CreateSponsorComponent.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -35,5 +38,5 @@ const app = new Vue({
 
 
 $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
 });

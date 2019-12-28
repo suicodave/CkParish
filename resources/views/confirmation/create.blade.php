@@ -50,9 +50,8 @@ $faker = Faker\Factory::create() ;
                 </div>
             </div>
 
-            <div class="my-3"></div>
 
-            <div class="card shadow-sm">
+            <div class="card my-3 shadow-sm">
                 <div class="card-body">
                     <div class="col-12">
                         <div class="row">
@@ -68,6 +67,15 @@ $faker = Faker\Factory::create() ;
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    <create-sponsor-input></create-sponsor-input>
+                   
                 </div>
             </div>
 
