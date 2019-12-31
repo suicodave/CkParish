@@ -18,7 +18,11 @@ class Confirmation extends BaseRepository
 
         $sponsors = $this->prepareSponsorNames($attributes['sponsors']);
 
+        $parents = $this->prepareParentNames($attributes['parents']);
+
         $confirmation->sponsors()->createMany($sponsors);
+
+        $confirmation->parents()->createMany($parents);
 
         return $confirmation;
     }
@@ -31,11 +35,17 @@ class Confirmation extends BaseRepository
 
         $confirmation->customer->update($attributes);
 
+        $parents = $this->prepareParentNames($attributes['parents']);
+
         $sponsors = $this->prepareSponsorNames($attributes['sponsors']);
 
         $confirmation->sponsors()->delete();
 
+        $confirmation->parents()->delete();
+
         $confirmation->sponsors()->createMany($sponsors);
+
+        $confirmation->parents()->createMany($parents);
 
         return $confirmation;
     }
@@ -55,9 +65,22 @@ class Confirmation extends BaseRepository
             })
             ->all();
 
+        $parents = $confirmation
+            ->load(['parents'])
+            ->parents
+            ->pluck('name')
+            ->map(function ($sponsor) {
+                return [
+                    'value' => $sponsor
+                ];
+            })
+            ->all();
+
+
         return [
             'confirmation' => $confirmation,
-            'sponsors' => $sponsors
+            'sponsors' => $sponsors,
+            'parents' => $parents
         ];
     }
 }

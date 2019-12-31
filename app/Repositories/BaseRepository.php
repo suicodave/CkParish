@@ -47,4 +47,8 @@ class BaseRepository
         return $this->prepareNameList($names);
     }
 
+    function prepareParentNames($names)
+    {
+        return $this->prepareNameList($names);
+    }
 }

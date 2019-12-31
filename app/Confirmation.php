@@ -27,6 +27,11 @@ class Confirmation extends Model
         return $this->morphMany('App\Sponsor', 'sponsorable');
     }
 
+    function parents()
+    {
+        return $this->morphMany('App\BiologicalParent', 'parentable');
+    }
+
     function getConfirmationDateAttribute($value)
     {
         return new Carbon($value);

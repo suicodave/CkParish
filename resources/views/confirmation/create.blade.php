@@ -65,7 +65,7 @@ $faker = Faker\Factory::create() ;
             <div class="card mt-3 shadow-sm">
                 <div class="card-body">
 
-                    <create-sponsor-input @isset($sponsors) :sponsorsprop='@json($sponsors)' @endisset @isset($showOnly)
+                    <create-sponsor-input @isset($parents) :sponsorsprop='@json($parents)' @endisset @isset($showOnly)
                         :disablecontrol="true" @endisset formlabel="Parents" inputname="parents[]">
                     </create-sponsor-input>
 
