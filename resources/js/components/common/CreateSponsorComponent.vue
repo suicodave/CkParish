@@ -44,13 +44,16 @@ export default {
   },
 
   methods: {
-    addSponsor: function() {
-      if (this.max != 'undefined') {
-        const maxInputs = this.max;
+    _hasReachedLimit: function() {
+      const maxInputs = parseInt(this.max);
 
-        if (this.sponsors.length != maxInputs) {
-          this.sponsors.push({ value: "" });
-        }
+      const length = this.sponsors.length;
+
+      return this.max != undefined && length >= maxInputs;
+    },
+    addSponsor: function() {
+      if (!this._hasReachedLimit()) {
+        this.sponsors.push({ value: "" });
       }
     },
     removeSponsor: function(index) {

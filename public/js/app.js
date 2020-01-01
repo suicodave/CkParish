@@ -1915,15 +1915,16 @@ __webpack_require__.r(__webpack_exports__);
     this.sponsors = this.sponsorsprop || [];
   },
   methods: {
+    _hasReachedLimit: function _hasReachedLimit() {
+      var maxInputs = parseInt(this.max);
+      var length = this.sponsors.length;
+      return this.max != undefined && length >= maxInputs;
+    },
     addSponsor: function addSponsor() {
-      if (this.max != 'undefined') {
-        var maxInputs = this.max;
-
-        if (this.sponsors.length != maxInputs) {
-          this.sponsors.push({
-            value: ""
-          });
-        }
+      if (!this._hasReachedLimit()) {
+        this.sponsors.push({
+          value: ""
+        });
       }
     },
     removeSponsor: function removeSponsor(index) {
