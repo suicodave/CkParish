@@ -4,19 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Confirmation;
 use Faker\Factory;
+use Illuminate\Http\Request;
 use PDF;
 
 class ConfirmationPrintPreviewController extends Controller
 {
-    function show(Confirmation $confirmation)
+    function show(Confirmation $confirmation, Request $request)
     {
-        $confirmation->load('sponsors');
+        $confirmation->load(['sponsors', 'parents']);
 
         $faker = Factory::create();
 
         $config = config('confirmation');
 
         $watermark = asset('flame.svg');
+
+        $parents = implode(' and ', $confirmation->parents->pluck('name')->all());
 
         $sponsors = $confirmation->sponsors->pluck('name')->all();
 
@@ -25,10 +28,12 @@ class ConfirmationPrintPreviewController extends Controller
         $pdf = PDF::loadView('confirmation.print-preview.index', [
             'confirmation' => $confirmation,
             'config' => $config,
+            'priest' => ucwords($request->priest),
             'faker' => $faker,
             'watermark' => $watermark,
-            'purposes' => ['Work', 'Medical', 'Multi'],
-            'sponsors' => $sponsors
+            'purpose' => ucwords($request->purpose),
+            'sponsors' => $sponsors,
+            'parents' => $parents
         ])
             ->setPaper('A4')
             ->setOption('margin-bottom', 5)

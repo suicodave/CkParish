@@ -122,7 +122,9 @@ $faker = Faker\Factory::create() ;
 
 
                 @isset($showOnly)
-                <a href="" class="btn btn-primary">
+                <a href="{{route('issuances.create',[
+                    'confirmation'=>$confirmation->id
+                ])}} " class="btn btn-primary">
                     Issue Certificate
                 </a>
                 @endisset

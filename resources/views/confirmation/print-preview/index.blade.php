@@ -67,6 +67,8 @@
 
 
                         </h1>
+
+                        <span>Child of {{$parents}}</span>
                     </div>
                 </div>
 
@@ -117,13 +119,13 @@
                         </div>
 
                         <div class="d-block">
-                            {{ $purposes[array_rand($purposes)] }} Purpose
+                            {{ $purpose }} Purpose
                         </div>
                     </div>
                     <div class="col-6 text-center">
 
                         <h3>
-                            <u>{{$config['parish_priest']}}</u>
+                            <u>{{$priest}}</u>
                         </h3>
                         <h5>Parish Priest</h5>
                     </div>
