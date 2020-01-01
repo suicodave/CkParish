@@ -17,7 +17,6 @@
       <div class="input-group mb-3">
         <input
           type="text"
-          v-bind:id="index"
           v-model="item.value"
           class="form-control"
           aria-describedby="basic-addon2"
@@ -34,7 +33,7 @@
 
 <script>
 export default {
-  props: ["sponsorsprop", "disablecontrol", "formlabel", "inputname"],
+  props: ["sponsorsprop", "disablecontrol", "formlabel", "inputname", "max"],
   data() {
     return {
       sponsors: []
@@ -46,7 +45,13 @@ export default {
 
   methods: {
     addSponsor: function() {
-      this.sponsors.push({ value: "" });
+      if (this.max != 'undefined') {
+        const maxInputs = this.max;
+
+        if (this.sponsors.length != maxInputs) {
+          this.sponsors.push({ value: "" });
+        }
+      }
     },
     removeSponsor: function(index) {
       console.log(index);
