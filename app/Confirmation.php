@@ -27,6 +27,11 @@ class Confirmation extends Model
         return $this->morphMany('App\Sponsor', 'sponsorable');
     }
 
+    function issuances()
+    {
+        return $this->morphMany('App\CertificateIssuance', 'issuable');
+    }
+
     function parents()
     {
         return $this->morphMany('App\BiologicalParent', 'parentable');

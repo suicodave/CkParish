@@ -5,10 +5,10 @@
 <div class="container mt-5">
     <div class="col-10 offset-1">
 
-        <form action="{{route('confirmations.print-preview',[
+        <form action="{{route('issuances.store',[
             'confirmation'=>$confirmation
-        ])}}" method="GET">
-
+        ])}}" method="POST">
+            @csrf
             <div class="row">
                 <div class="col-4  offset-4">
                     <div class="card shadow-sm">
@@ -20,7 +20,7 @@
 
                             <div class="form-group ">
                                 <label for="priest" class="col-form-label">Parish Priest</label>
-                                <input type="text" name="priest" class="form-control" id="priest">
+                                <input type="text" name="priest_name" class="form-control" id="priest">
                             </div>
                         </div>
 

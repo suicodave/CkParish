@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ConfirmationCertificateIssuance;
+use App\Repositories\Confirmation;
+use App\Traits\IssuesCertificate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConfirmationIssuanceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    use IssuesCertificate;
+
+    private $confirmation;
+    private $certificate;
+
+    protected $redirectCertificate = 'confirmations.print-preview';
+
+    function __construct(Confirmation $confirmation, ConfirmationCertificateIssuance $certificate)
     {
-        //
+        $this->middleware('auth');
+
+        $this->confirmation = $confirmation;
+
+        $this->certificate = $certificate;
     }
 
     /**
@@ -37,51 +47,12 @@ class ConfirmationIssuanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $inputs = $request->all();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $userId = Auth::id();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $inputs['user_id'] = $userId;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $this->issueCertificate($this->certificate, $request->confirmation, $inputs);
     }
 }
