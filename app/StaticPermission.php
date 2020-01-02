@@ -23,6 +23,12 @@ class StaticPermission
 
     const UPDATE_USER = 'update user';
 
+    const CREATE_CONFIRMATION = 'create confirmation';
+
+    const UPDATE_CONFIRMATION = 'update confirmation';
+
+    const ISSUE_CONFIRMATION_CERTIFICATE = 'issue confirmation certificate';
+
     function predefinedPermissions()
     {
         $reflectionClass = new ReflectionClass($this);

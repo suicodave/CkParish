@@ -10,6 +10,7 @@ trait ChecksRoleOrPermission
     function checkRoleOrPermissions($roleOrPermissionNames)
     {
         $names = $this->flatten([
+            'auth',
             Role::ADMINISTRATOR,
             $roleOrPermissionNames
         ]);

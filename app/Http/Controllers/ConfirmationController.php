@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Confirmation as AppConfirmation;
 use App\Repositories\Confirmation;
+use App\StaticPermission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +13,15 @@ class ConfirmationController extends Controller
 
     function __construct(Confirmation $confirmation)
     {
+        $this->checkRoleOrPermissions(StaticPermission::VIEW_CONFIRMATION_COMPONENT)
+            ->only(['index', 'show']);
+
+        $this->checkRoleOrPermissions(StaticPermission::CREATE_CONFIRMATION)
+            ->only(['create', 'store']);
+
+        $this->checkRoleOrPermissions(StaticPermission::UPDATE_CONFIRMATION)
+            ->only(['edit', 'update']);
+
         $this->confirmation = $confirmation;
     }
     /**
@@ -100,16 +109,5 @@ class ConfirmationController extends Controller
         $this->confirmation->update($attributes, $id);
 
         return redirect()->route('confirmations.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

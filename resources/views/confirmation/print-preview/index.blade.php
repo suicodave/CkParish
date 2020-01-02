@@ -83,10 +83,12 @@
 
                         <p class="text-center">Most {{$confirmation->priest_name}}</p>
 
-                        <p>
+                        <p class="text-center">
                             According to the Rite of the Roman Catholic Church
-                            <br>
-                            the sponsors being:
+                        </p>
+
+                        <p>
+                            The Sponsors:
                         </p>
 
                         @foreach ($sponsors as $sponsorsChunk)

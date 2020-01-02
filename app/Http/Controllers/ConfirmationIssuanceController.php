@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\ConfirmationCertificateIssuance;
 use App\Repositories\Confirmation;
+use App\StaticPermission;
 use App\Traits\IssuesCertificate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class ConfirmationIssuanceController extends Controller
 
     function __construct(Confirmation $confirmation, ConfirmationCertificateIssuance $certificate)
     {
-        $this->middleware('auth');
+        $this->checkRoleOrPermissions(StaticPermission::ISSUE_CONFIRMATION_CERTIFICATE);
 
         $this->confirmation = $confirmation;
 
