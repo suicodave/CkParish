@@ -113,7 +113,7 @@
                 <div class="row my-5 bg-a">
                     <div class="col-6 metadata-label mt-5">
                         <span class="d-block ">
-                            Issue ID: {{$faker->uuid}}
+                            Issue ID: {{$issueId}}
                         </span>
 
                         <div class="d-block">

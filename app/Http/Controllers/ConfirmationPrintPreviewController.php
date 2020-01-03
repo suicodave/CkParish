@@ -39,6 +39,7 @@ class ConfirmationPrintPreviewController extends Controller
             'watermark' => $watermark,
             'purpose' => ucwords($request->purpose),
             'sponsors' => $sponsors,
+            'issueId' => $request->issueId,
             'parents' => $parents
         ])
             ->setPaper('A4')
