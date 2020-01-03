@@ -42,6 +42,11 @@ class Confirmation extends Model
         return new Carbon($value);
     }
 
+    function getPriestNameAttribute($value)
+    {
+        return ucwords($value);
+    }
+
     function getCreatedTimeAttribute($value)
     {
         return $this->created_at->format('g:i A');

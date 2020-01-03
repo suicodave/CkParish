@@ -2,27 +2,69 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Baptismal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BaptismalController extends Controller
 {
-    function index(){
+    private $baptismal;
 
+    function __construct(Baptismal $baptismal)
+    {
+        $this->baptismal = $baptismal;
     }
 
-    function create(){
+    function index()
+    {
+        $baptismals = $this->baptismal->paginate();
 
+        return view('baptismal.index', [
+            'baptismals' => $baptismals
+        ]);
     }
 
-    function store(){
-
+    function create()
+    {
+        return view('baptismal.create');
     }
 
-    function edit(){
+    function store(Request $request)
+    {
+        $userId = Auth::id();
 
+        $attributes = $request->all();
+
+        $attributes['created_by'] = $userId;
+
+        $this->baptismal->create($attributes);
+
+        return redirect()->route('baptismals.index');
     }
 
-    function update(){
-        
+
+    function show($id)
+    {
+        $baptismal = $this->baptismal->show($id);
+
+        $baptismal['showOnly'] = true;
+
+        return view('baptismal.create', $baptismal);
+    }
+
+    function edit($id)
+    {
+        $baptismal = $this->baptismal->show($id);
+
+        return view('baptismal.create', $baptismal);
+    }
+
+    function update(Request $request, $id)
+    {
+        $attributes = $request->all();
+
+        $this->baptismal->update($attributes, $id);
+
+        return redirect()->route('baptismals.index');
     }
 }
