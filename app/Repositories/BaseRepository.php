@@ -3,8 +3,9 @@
 namespace App\Repositories;
 
 use App\Customer;
+use App\Interfaces\IssuesCertificates;
 
-class BaseRepository
+class BaseRepository implements IssuesCertificates
 {
     protected $model;
 
@@ -126,5 +127,14 @@ class BaseRepository
             'sponsors' => $sponsors,
             'parents' => $parents
         ];
+    }
+
+    function issueCertificate($id, $attributes)
+    {
+        $model = $this->find($id);
+
+        $certificate = $model->issuances()->create($attributes);
+
+        return $certificate;
     }
 }

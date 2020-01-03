@@ -14,17 +14,15 @@ class ConfirmationIssuanceController extends Controller
     use IssuesCertificate;
 
     private $confirmation;
-    private $certificate;
 
     protected $redirectCertificate = 'confirmations.print-preview';
 
-    function __construct(Confirmation $confirmation, ConfirmationCertificateIssuance $certificate)
+    function __construct(Confirmation $confirmation)
     {
         $this->checkRoleOrPermissions(StaticPermission::ISSUE_CONFIRMATION_CERTIFICATE);
 
         $this->confirmation = $confirmation;
 
-        $this->certificate = $certificate;
     }
 
     /**
@@ -54,6 +52,6 @@ class ConfirmationIssuanceController extends Controller
 
         $inputs['user_id'] = $userId;
 
-        return $this->issueCertificate($this->certificate, $request->confirmation, $inputs);
+        return $this->issueCertificate($this->confirmation, $request->confirmation, $inputs);
     }
 }
