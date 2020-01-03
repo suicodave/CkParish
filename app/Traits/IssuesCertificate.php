@@ -13,7 +13,7 @@ trait IssuesCertificate
         $certificate = $repository->issueCertificate($issuableId, $inputs);
 
         return redirect()->route($this->redirectCertificate, [
-            'confirmation' => request()->confirmation,
+            $this->key => request()->{$this->key},
             'purpose' => request()->purpose,
             'priest' => request()->priest_name,
             'issueId' => $certificate->id

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\ConfirmationCertificateIssuance;
 use App\Repositories\Confirmation;
 use App\StaticPermission;
 use App\Traits\IssuesCertificate;
@@ -17,12 +16,13 @@ class ConfirmationIssuanceController extends Controller
 
     protected $redirectCertificate = 'confirmations.print-preview';
 
+    protected $key = 'confirmation';
+
     function __construct(Confirmation $confirmation)
     {
         $this->checkRoleOrPermissions(StaticPermission::ISSUE_CONFIRMATION_CERTIFICATE);
 
         $this->confirmation = $confirmation;
-
     }
 
     /**

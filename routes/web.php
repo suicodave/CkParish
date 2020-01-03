@@ -43,7 +43,13 @@ Route::group(['middleware' => ['auth', 'user.default-password']], function () {
         Route::resource('issuances', 'ConfirmationIssuanceController');
     });
 
+    Route::group(['prefix' => 'baptismals/{baptismal}', 'as' => 'baptismal.'], function () {
+        Route::resource('issuances', 'BaptismIssuanceController');
+    });
+
     Route::resource('baptismals', 'BaptismalController');
 
     Route::get('confirmations/print-previews/{confirmation}', 'ConfirmationPrintPreviewController@show')->name('confirmations.print-preview');
+
+    Route::get('baptismals/print-previews/{baptismal}', 'BaptismalPrintPreviewController@show')->name('baptismals.print-preview');
 });
