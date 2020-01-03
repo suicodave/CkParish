@@ -27,9 +27,15 @@ class UserModule
             ],
             [
                 'name' => 'Confirmation Registry',
-                'description' => 'Manage confirmees including certificate issuances.',
+                'description' => 'Manage confirmees and certificate issuances.',
                 'link' => route('confirmations.index'),
                 'permission' => StaticPermission::VIEW_CONFIRMATION_COMPONENT
+            ],
+            [
+                'name' => 'Baptismal Registry',
+                'description' => 'Manage baptismal records and certificate issuances.',
+                'link' => route('baptismals.index'),
+                'permission' => StaticPermission::VIEW_BAPTISMAL_COMPONENT
             ]
 
         ];

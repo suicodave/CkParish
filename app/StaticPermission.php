@@ -15,6 +15,8 @@ class StaticPermission
 
     const VIEW_CONFIRMATION_COMPONENT = 'view confirmation component';
 
+    const VIEW_BAPTISMAL_COMPONENT = 'view baptismal component';
+
     const CREATE_ROLE = 'create role';
 
     const UPDATE_ROLE = 'update role';
