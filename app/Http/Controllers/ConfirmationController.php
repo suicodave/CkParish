@@ -75,7 +75,7 @@ class ConfirmationController extends Controller
      */
     public function show($id)
     {
-        $confirmation = $this->confirmation->getConfirmation($id);
+        $confirmation = $this->confirmation->show($id);
 
         $confirmation['showOnly'] = true;
 
@@ -90,7 +90,7 @@ class ConfirmationController extends Controller
      */
     public function edit($id)
     {
-        $confirmation = $this->confirmation->getConfirmation($id);
+        $confirmation = $this->confirmation->show($id);
 
         return view('confirmation.create', $confirmation);
     }

@@ -7,13 +7,13 @@
 $faker = Faker\Factory::create() ;
 @endphp
 
-<form method="POST" @empty($confirmation) action="{{route('confirmations.store')}}" @endempty @isset($confirmation)
+<form method="POST" @empty($model) action="{{route('confirmations.store')}}" @endempty @isset($model)
     action="{{route('confirmations.update',[
-    'confirmation'=>$confirmation->id
+    'confirmation'=>$model->id
 ])}}" @endisset>
     @csrf
 
-    @isset($confirmation)
+    @isset($model)
     @method('PUT')
     @endisset
 
@@ -32,28 +32,28 @@ $faker = Faker\Factory::create() ;
                             <div class="form-group col-4 mt-3">
                                 <label for="fn">First Name</label>
                                 <input id="fn" placeholder="Ex. {{$faker->firstName}}" class="form-control" type="text"
-                                    name="first_name" @isset($confirmation)
-                                    value="{{$confirmation->customer->first_name}}" @endisset>
+                                    name="first_name" @isset($model)
+                                    value="{{$model->customer->first_name}}" @endisset>
                             </div>
 
                             <div class="form-group col-4 mt-3">
                                 <label for="mn">Middle Name</label>
                                 <input id="mn" placeholder="Ex. {{$faker->lastName}}" class="form-control" type="text"
-                                    name="middle_name" @isset($confirmation)
-                                    value="{{$confirmation->customer->middle_name}}" @endisset>
+                                    name="middle_name" @isset($model)
+                                    value="{{$model->customer->middle_name}}" @endisset>
                             </div>
 
                             <div class="form-group col-4 mt-3">
                                 <label for="ln">Last Name</label>
                                 <input id="ln" class="form-control" type="text" placeholder="Ex. {{$faker->lastName}}"
-                                    name="last_name" @isset($confirmation)
-                                    value="{{$confirmation->customer->last_name}}" @endisset>
+                                    name="last_name" @isset($model)
+                                    value="{{$model->customer->last_name}}" @endisset>
                             </div>
 
                             <div class="form-group col-12 mt-3">
                                 <label for="bd">Birthdate</label>
-                                <input id="bd" class="form-control" type="date" name="birthdate" @isset($confirmation)
-                                    value="{{$confirmation->customer->birthdate}}" @endisset>
+                                <input id="bd" class="form-control" type="date" name="birthdate" @isset($model)
+                                    value="{{$model->customer->birthdate}}" @endisset>
                             </div>
 
                         </div>
@@ -80,14 +80,14 @@ $faker = Faker\Factory::create() ;
                             <div class="form-group col-6 mt-3">
                                 <label for="pn">Priest Name</label>
                                 <input id="pn" class="form-control" type="text" name="priest_name"
-                                    placeholder="Ex. {{$faker->name}}" @isset($confirmation)
-                                    value="{{$confirmation->priest_name}}" @endisset>
+                                    placeholder="Ex. {{$faker->name}}" @isset($model)
+                                    value="{{$model->priest_name}}" @endisset>
                             </div>
 
                             <div class="form-group col-6 mt-3">
                                 <label for="cd">Confirmation Date</label>
                                 <input id="cd" class="form-control" type="date" name="confirmation_date"
-                                    @isset($confirmation) value="{{$confirmation->confirmation_date->toDateString()}}"
+                                    @isset($model) value="{{$model->confirmation_date->toDateString()}}"
                                     @endisset>
                             </div>
                         </div>
@@ -110,11 +110,11 @@ $faker = Faker\Factory::create() ;
             <div class="float-right mt-3">
                 @empty($showOnly)
                 <button class="btn btn-primary shadow-sm" type="submit">
-                    @isset($confirmation)
+                    @isset($model)
                     Update
                     @endisset
 
-                    @empty($confirmation)
+                    @empty($model)
                     Create
                     @endempty
                 </button>
@@ -123,7 +123,7 @@ $faker = Faker\Factory::create() ;
 
                 @isset($showOnly)
                 <a href="{{route('issuances.create',[
-                    'confirmation'=>$confirmation->id
+                    'confirmation'=>$model->id
                 ])}} " class="btn btn-primary">
                     Issue Certificate
                 </a>
