@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Confirmation;
 use App\StaticPermission;
-use Faker\Factory;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -18,8 +17,6 @@ class ConfirmationPrintPreviewController extends Controller
     function show(Confirmation $confirmation, Request $request)
     {
         $confirmation->load(['sponsors', 'parents']);
-
-        $faker = Factory::create();
 
         $config = config('confirmation');
 
@@ -35,7 +32,6 @@ class ConfirmationPrintPreviewController extends Controller
             'confirmation' => $confirmation,
             'config' => $config,
             'priest' => ucwords($request->priest),
-            'faker' => $faker,
             'watermark' => $watermark,
             'purpose' => ucwords($request->purpose),
             'sponsors' => $sponsors,
