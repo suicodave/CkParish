@@ -81,7 +81,14 @@
 
                         <p class="text-center"> Administered By:</p>
 
-                        <p class="text-center">Most {{$confirmation->priest_name}}</p>
+
+                        <h4 class="text-center">
+                            Most {{$confirmation->priest_name}}
+                        </h4>
+
+                        <p class="text-center">
+                            {{$confirmation->confirmation_date->format('l, jS \\of F Y')}}
+                        </p>
 
                         <p class="text-center">
                             According to the Rite of the Roman Catholic Church
