@@ -15,7 +15,7 @@ class BaptismIssuanceController extends Controller
 
     protected $key = 'baptismal';
 
-    protected $redirectCertificate = 'baptismals.print-preview';
+    protected $redirectCertificate = 'BaptismalPrintPreviewController@show';
 
     function __construct(Baptismal $baptismal)
     {

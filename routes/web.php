@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth', 'user.default-password']], function () {
 
     Route::resource('baptismals', 'BaptismalController');
 
-    Route::get('confirmations/print-previews/{confirmation}', 'ConfirmationPrintPreviewController@show')->name('confirmations.print-preview');
+    Route::match(['get', 'post'], 'confirmations/print-previews/{confirmation}', 'ConfirmationPrintPreviewController@show')->name('confirmations.print-preview');
 
     Route::get('baptismals/print-previews/{baptismal}', 'BaptismalPrintPreviewController@show')->name('baptismals.print-preview');
 });

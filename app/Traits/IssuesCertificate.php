@@ -12,11 +12,11 @@ trait IssuesCertificate
 
         $certificate = $repository->issueCertificate($issuableId, $inputs);
 
-        return redirect()->route($this->redirectCertificate, [
+        return redirect()->action($this->redirectCertificate, [
             $this->key => request()->{$this->key},
             'purpose' => request()->purpose,
             'priest' => request()->priest_name,
-            'issueId' => $certificate->id
-        ]);
+
+        ])->with(['issueId' => $certificate->id]);
     }
 }

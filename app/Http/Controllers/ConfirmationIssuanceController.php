@@ -14,7 +14,7 @@ class ConfirmationIssuanceController extends Controller
 
     private $confirmation;
 
-    protected $redirectCertificate = 'confirmations.print-preview';
+    protected $redirectCertificate = 'ConfirmationPrintPreviewController@show';
 
     protected $key = 'confirmation';
 
