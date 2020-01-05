@@ -14,11 +14,12 @@ class Customer extends Model
         'first_name',
         'middle_name',
         'last_name',
+        'sex',
         'birthdate',
         'created_by'
     ];
 
-    
+
     function user()
     {
         return $this->belongsTo('App\User', 'created_by');

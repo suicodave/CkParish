@@ -47,10 +47,23 @@ $faker = Faker\Factory::create() ;
                                     name="last_name" @isset($model) value="{{$model->customer->last_name}}" @endisset>
                             </div>
 
-                            <div class="form-group col-12 mt-3">
+                            <div class="form-group col-6 mt-3">
                                 <label for="bd">Birthdate</label>
                                 <input id="bd" class="form-control" type="date" name="birthdate" @isset($model)
                                     value="{{$model->customer->birthdate}}" @endisset>
+                            </div>
+
+                            <div class="form-group col-6 mt-3">
+                                <label for="sex">Sex</label>
+
+                                <select class="form-control" name="sex" id="sex">
+
+                                    @foreach (['Male','Female'] as $sex)
+                                    <option value="{{$sex}}" @isset($model)
+                                        {{ $model->customer->sex == $sex ? 'selected' : null }} @endisset> {{$sex}}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </div>
 
                         </div>
