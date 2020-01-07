@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Marriage;
+use App\Repositories\Marriage as RepositoriesMarriage;
 use Illuminate\Http\Request;
 
 class MarriageController extends Controller
 {
+
+    private $marriage;
+
+    function __construct(RepositoriesMarriage $marriage)
+    {
+        $this->marriage = $marriage;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +32,7 @@ class MarriageController extends Controller
      */
     public function create()
     {
-        //
+        return view('marriage.create');
     }
 
     /**
@@ -35,7 +43,8 @@ class MarriageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->all();
+        return $this->marriage->create($attributes);
     }
 
     /**

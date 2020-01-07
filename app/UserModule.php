@@ -36,6 +36,12 @@ class UserModule
                 'description' => 'Manage baptismal records and certificate issuances.',
                 'link' => route('baptismals.index'),
                 'permission' => StaticPermission::VIEW_BAPTISMAL_COMPONENT
+            ],
+            [
+                'name' => 'Marriage Registry',
+                'description' => 'Manage marital records and certificate issuances.',
+                'link' => route('marriages.index'),
+                'permission' => StaticPermission::VIEW_MARRIAGE_COMPONENT
             ]
 
         ];

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMarriagesTable extends Migration
+class CreateMarriageParticipantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateMarriagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('marriages', function (Blueprint $table) {
+        Schema::create('marriage_participants', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('priest_name');
-            $table->date('wedding_date');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('marriage_id');
+            $table->string('role');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateMarriagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('marriages');
+        Schema::dropIfExists('marriage_participants');
     }
 }
