@@ -1904,8 +1904,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["sponsorsprop", "disablecontrol", "formlabel", "inputname", "max"],
+  props: ["sponsorsprop", "disablecontrol", "formlabel", "inputname", "max", "includerelationship"],
   data: function data() {
     return {
       sponsors: []
@@ -37445,38 +37468,84 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm._l(_vm.sponsors, function(item, index) {
-        return _c("div", { key: index, staticClass: "col my-3" }, [
-          _c("div", { staticClass: "input-group mb-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: item.value,
-                  expression: "item.value"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                "aria-describedby": "basic-addon2",
-                name: _vm.inputname,
-                disabled: _vm.disablecontrol
-              },
-              domProps: { value: item.value },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+        return _c("div", { key: index, staticClass: "col my-3 form-inline" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group mx-1" }, [
+              _c("label", { staticClass: "mr-2", attrs: { for: "name" } }, [
+                _vm._v("Name")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: item.value,
+                    expression: "item.value"
                   }
-                  _vm.$set(item, "value", $event.target.value)
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "name",
+                  type: "text",
+                  "aria-describedby": "basic-addon2",
+                  name: _vm.inputname + "[" + index + "]" + "[name]",
+                  disabled: _vm.disablecontrol
+                },
+                domProps: { value: item.value },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(item, "value", $event.target.value)
+                  }
                 }
-              }
-            }),
+              })
+            ]),
             _vm._v(" "),
-            !_vm.disablecontrol
-              ? _c("div", { staticClass: "input-group-append" }, [
+            _vm.includerelationship
+              ? _c("div", { staticClass: "form-group mx-1" }, [
                   _c(
+                    "label",
+                    { staticClass: "mr-2", attrs: { for: "relations" } },
+                    [_vm._v("Relationship")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: item.relationship,
+                        expression: "item.relationship"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "relations",
+                      type: "text",
+                      "aria-describedby": "basic-addon2",
+                      name:
+                        _vm.inputname + "[" + index + "]" + "[relationship]",
+                      disabled: _vm.disablecontrol
+                    },
+                    domProps: { value: item.relationship },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(item, "relationship", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", {}, [
+              !_vm.disablecontrol
+                ? _c(
                     "button",
                     {
                       staticClass: "btn btn-danger",
@@ -37489,8 +37558,8 @@ var render = function() {
                     },
                     [_vm._v("Remove")]
                   )
-                ])
-              : _vm._e()
+                : _vm._e()
+            ])
           ])
         ])
       })
