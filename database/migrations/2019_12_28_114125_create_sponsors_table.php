@@ -17,6 +17,7 @@ class CreateSponsorsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->morphs('sponsorable');
+            $table->string('relation')->nullable();
             $table->timestamps();
         });
     }

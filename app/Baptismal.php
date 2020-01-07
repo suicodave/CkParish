@@ -14,7 +14,8 @@ class Baptismal extends Model
     protected $fillable = [
         'customer_id',
         'priest_name',
-        'baptismal_date'
+        'baptismal_date',
+        'created_by'
     ];
 
     function customer()

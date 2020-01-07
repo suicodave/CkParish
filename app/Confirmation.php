@@ -14,7 +14,8 @@ class Confirmation extends Model
     protected $fillable = [
         'customer_id',
         'priest_name',
-        'confirmation_date'
+        'confirmation_date',
+        'created_by',
     ];
 
     function customer()

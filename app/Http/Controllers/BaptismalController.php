@@ -31,11 +31,7 @@ class BaptismalController extends Controller
 
     function store(Request $request)
     {
-        $userId = Auth::id();
-
         $attributes = $request->all();
-
-        $attributes['created_by'] = $userId;
 
         $this->baptismal->create($attributes);
 

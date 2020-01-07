@@ -18,6 +18,7 @@ class CreateBaptismalsTable extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->string('priest_name');
             $table->date('baptismal_date');
+            $table->unsignedInteger('created_by');
             $table->timestamps();
         });
     }

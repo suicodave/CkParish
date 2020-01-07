@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Customer;
 use App\Interfaces\IssuesCertificates;
+use Illuminate\Support\Facades\Auth;
 
 class BaseRepository implements IssuesCertificates
 {
@@ -55,6 +56,10 @@ class BaseRepository implements IssuesCertificates
 
     function create($attributes)
     {
+        $userId = Auth::id();
+
+        $attributes['created_by'] = $userId;
+
         $customer = $this->createCustomer($attributes);
 
         $attributes['customer_id'] = $customer->id;

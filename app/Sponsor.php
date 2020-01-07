@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Sponsor extends Model
 {
     protected $fillable =  [
-        'name'
+        'name',
+        'relation'
     ];
 
     function sponsorable()

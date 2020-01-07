@@ -18,6 +18,7 @@ class CreateConfirmationsTable extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->string('priest_name');
             $table->date('confirmation_date');
+            $table->unsignedInteger('created_by');
             $table->timestamps();
         });
     }
