@@ -32,11 +32,6 @@ class Baptismal extends Model
         return $this->morphMany('App\CertificateIssuance', 'issuable');
     }
 
-    function parents()
-    {
-        return $this->morphMany('App\BiologicalParent', 'parentable');
-    }
-
     function getPriestNameAttribute($value)
     {
         return ucwords($value);

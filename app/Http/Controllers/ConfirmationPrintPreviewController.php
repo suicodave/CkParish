@@ -16,13 +16,20 @@ class ConfirmationPrintPreviewController extends Controller
 
     function show(Confirmation $confirmation, Request $request)
     {
-        $confirmation->load(['sponsors', 'parents']);
+        $confirmation->load(['sponsors', 'customer.parents']);
 
         $config = config('confirmation');
 
         $watermark = asset('flame.svg');
 
-        $parents = implode(' and ', $confirmation->parents->pluck('name')->all());
+        $parents = implode(
+            ' and ',
+            $confirmation
+                ->customer
+                ->parents
+                ->pluck('name')
+                ->all()
+        );
 
         $sponsors = $confirmation->sponsors->pluck('name')->all();
 

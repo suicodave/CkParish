@@ -10,13 +10,15 @@ class BaptismalPrintPreviewController extends Controller
 {
     function show(Baptismal $baptismal, Request $request)
     {
-        $baptismal->load(['sponsors', 'parents']);
+        $baptismal->load(['sponsors', 'customer.parents']);
 
         $config = config('confirmation');
 
         $parents = implode(
             ' and ',
-            $baptismal->parents
+            $baptismal
+                ->customer
+                ->parents
                 ->pluck('name')
                 ->all()
         );

@@ -67,7 +67,7 @@ class BaseRepository implements IssuesCertificates
 
         $model->sponsors()->createMany($sponsors);
 
-        $model->parents()->createMany($parents);
+        $customer->parents()->createMany($parents);
 
         return $model;
     }
@@ -86,11 +86,11 @@ class BaseRepository implements IssuesCertificates
 
         $model->sponsors()->delete();
 
-        $model->parents()->delete();
+        $model->customer->parents()->delete();
 
         $model->sponsors()->createMany($sponsors);
 
-        $model->parents()->createMany($parents);
+        $model->customer->parents()->createMany($parents);
 
         return $model;
     }
@@ -111,7 +111,8 @@ class BaseRepository implements IssuesCertificates
             ->all();
 
         $parents = $model
-            ->load(['parents'])
+            ->load(['customer.parents'])
+            ->customer
             ->parents
             ->pluck('name')
             ->map(function ($sponsor) {

@@ -25,6 +25,11 @@ class Customer extends Model
         return $this->belongsTo('App\User', 'created_by');
     }
 
+    function parents()
+    {
+        return $this->hasMany(BiologicalParent::class);
+    }
+
     function getFullNameAttribute()
     {
         return "{$this->first_name} {$this->middle_name} {$this->last_name}";

@@ -16,7 +16,7 @@ class CreateParentsTable extends Migration
         Schema::create('parents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->morphs('parentable');
+            $table->unsignedInteger('customer_id');
             $table->timestamps();
         });
     }
