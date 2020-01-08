@@ -16,9 +16,9 @@
     <div class="col my-3 form-inline" v-for="(item,index) in sponsors" :key="index">
       <div class="row">
         <div class="form-group mx-1">
-          <label class="mr-2" for="name">Name</label>
+          <label class="mr-2" for="inputname+`name`+`${index}`">Name</label>
           <input
-            id="name"
+            v-bind:id="inputname+`name`+`${index}`"
             type="text"
             v-model="item.value"
             class="form-control"
@@ -29,9 +29,9 @@
         </div>
 
         <div class="form-group mx-1" v-if="includerelationship">
-          <label class="mr-2" for="relations">Relationship</label>
+          <label class="mr-2" for="inputname+`relations`+`${index}`">Relationship</label>
           <input
-            id="relations"
+            v-bind:id="inputname+`relations`+`${index}`"
             type="text"
             v-model="item.relationship"
             class="form-control"

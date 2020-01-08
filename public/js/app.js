@@ -37471,9 +37471,14 @@ var render = function() {
         return _c("div", { key: index, staticClass: "col my-3 form-inline" }, [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "form-group mx-1" }, [
-              _c("label", { staticClass: "mr-2", attrs: { for: "name" } }, [
-                _vm._v("Name")
-              ]),
+              _c(
+                "label",
+                {
+                  staticClass: "mr-2",
+                  attrs: { for: "inputname+`name`+`${index}`" }
+                },
+                [_vm._v("Name")]
+              ),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -37486,7 +37491,7 @@ var render = function() {
                 ],
                 staticClass: "form-control",
                 attrs: {
-                  id: "name",
+                  id: _vm.inputname + "name" + "" + index,
                   type: "text",
                   "aria-describedby": "basic-addon2",
                   name: _vm.inputname + "[" + index + "]" + "[name]",
@@ -37508,7 +37513,10 @@ var render = function() {
               ? _c("div", { staticClass: "form-group mx-1" }, [
                   _c(
                     "label",
-                    { staticClass: "mr-2", attrs: { for: "relations" } },
+                    {
+                      staticClass: "mr-2",
+                      attrs: { for: "inputname+`relations`+`${index}`" }
+                    },
                     [_vm._v("Relationship")]
                   ),
                   _vm._v(" "),
@@ -37523,7 +37531,7 @@ var render = function() {
                     ],
                     staticClass: "form-control",
                     attrs: {
-                      id: "relations",
+                      id: _vm.inputname + "relations" + "" + index,
                       type: "text",
                       "aria-describedby": "basic-addon2",
                       name:
