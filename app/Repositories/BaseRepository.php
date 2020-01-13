@@ -35,12 +35,11 @@ class BaseRepository implements IssuesCertificates
     function prepareNameList($names)
     {
         $names = array_filter($names, function ($name) {
-            return trim($name) != '';
+            return count($name) != 0 || !isNull($name);
         });
+
         return array_map(function ($name) {
-            return [
-                'name' => $name
-            ];
+            return $name;
         }, $names);
     }
 
@@ -74,6 +73,7 @@ class BaseRepository implements IssuesCertificates
 
         $customer->parents()->createMany($parents);
 
+
         return $model;
     }
 
@@ -85,9 +85,9 @@ class BaseRepository implements IssuesCertificates
 
         $model->customer->update($attributes);
 
-        $parents = $this->prepareParentNames($attributes['parents']);
+        $parents = $this->prepareParentNames($attributes['parents'] ?? []);
 
-        $sponsors = $this->prepareSponsorNames($attributes['sponsors']);
+        $sponsors = $this->prepareSponsorNames($attributes['sponsors'] ?? []);
 
         $model->sponsors()->delete();
 

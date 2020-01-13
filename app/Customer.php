@@ -27,7 +27,7 @@ class Customer extends Model
 
     function parents()
     {
-        return $this->hasMany(BiologicalParent::class);
+        return $this->hasMany('App\BiologicalParent'::class);
     }
 
     function getFullNameAttribute()
