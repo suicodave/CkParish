@@ -75,7 +75,7 @@ $faker = Faker\Factory::create() ;
                 <div class="card-body">
 
                     <create-sponsor-input @isset($parents) :sponsorsprop='@json($parents)' @endisset @isset($showOnly)
-                        :disablecontrol="true" @endisset formlabel="Parents" inputname="parents[]" max="2">
+                        :disablecontrol="true" @endisset formlabel="Parents" inputname="parents" max="2">
                     </create-sponsor-input>
 
                 </div>
@@ -108,7 +108,7 @@ $faker = Faker\Factory::create() ;
                 <div class="card-body">
 
                     <create-sponsor-input @isset($sponsors) :sponsorsprop='@json($sponsors)' @endisset @isset($showOnly)
-                        :disablecontrol="true" @endisset formlabel="Sponsors" inputname="sponsors[]">
+                        :disablecontrol="true" @endisset formlabel="Sponsors" inputname="sponsors">
                     </create-sponsor-input>
 
                 </div>
