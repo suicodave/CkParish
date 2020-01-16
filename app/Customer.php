@@ -16,6 +16,8 @@ class Customer extends Model
         'last_name',
         'sex',
         'birthdate',
+        'residence',
+        'religion',
         'created_by'
     ];
 
@@ -48,5 +50,11 @@ class Customer extends Model
     function getLastNameAttribute($value)
     {
         return ucfirst($value);
+    }
+
+
+    function setReligionAttribute($value)
+    {
+        $this->attributes['religion'] = ucwords($value) ?? config('parish.religion');
     }
 }

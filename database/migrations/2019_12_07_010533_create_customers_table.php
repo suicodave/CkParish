@@ -18,6 +18,8 @@ class CreateCustomersTable extends Migration
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
+            $table->string('religion')->nullable()->default(config('parish.religion'));
+            $table->string('residence')->nullable();
             $table->date('birthdate');
             $table->integer('created_by');
             $table->timestamps();
