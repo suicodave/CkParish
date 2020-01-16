@@ -13,42 +13,91 @@
       </button>
     </div>
 
-    <div class="col my-3 form-inline" v-for="(item,index) in sponsors" :key="index">
-      <div class="row">
-        <div class="form-group mx-1">
-          <label class="mr-2" for="inputname+`name`+`${index}`">Name</label>
-          <input
-            v-bind:id="inputname+`name`+`${index}`"
-            type="text"
-            v-model="item.value"
-            class="form-control"
-            aria-describedby="basic-addon2"
-            v-bind:name="inputname+`[${index}]`+ '[name]'"
-            v-bind:disabled="disablecontrol"
-          />
+    <div class="row">
+      <div class="col-12 " v-for="(item,index) in sponsors" :key="index">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group row m-2">
+              <label class="mr-2 text-right col-3" for="inputname+`name`+`${index}`">Name</label>
+              <div class="col">
+                <input
+                  v-bind:id="inputname+`name`+`${index}`"
+                  type="text"
+                  v-model="item.value"
+                  class="form-control"
+                  aria-describedby="basic-addon2"
+                  v-bind:name="inputname+`[${index}]`+ '[name]'"
+                  v-bind:disabled="disablecontrol"
+                />
+              </div>
+            </div>
+
+            <div class="form-group row m-2" v-if="parental">
+              <label
+                class="mr-2 text-right col-3"
+                for="inputname+`relations`+`${index}`"
+              >Relationship</label>
+              <div class="col">
+                <input
+                  v-bind:id="inputname+`relations`+`${index}`"
+                  type="text"
+                  v-model="item.relationship"
+                  class="form-control"
+                  aria-describedby="basic-addon2"
+                  v-bind:name="inputname+`[${index}]`+ '[relationship]'"
+                  v-bind:disabled="disablecontrol"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6" v-if="parental">
+            <div class="form-group row m-1">
+              <label
+                class="mr-2 text-right col-3"
+                for="inputname+`citizenship`+`${index}`"
+              >Citizenship</label>
+
+              <div class="col">
+                <input
+                  v-bind:id="inputname+`citizenship`+`${index}`"
+                  type="text"
+                  v-model="item.citizenship"
+                  class="form-control"
+                  aria-describedby="basic-addon2"
+                  v-bind:name="inputname+`[${index}]`+ '[citizenship]'"
+                  v-bind:disabled="disablecontrol"
+                />
+              </div>
+            </div>
+
+            <div class="form-group row m-2" v-if="parental">
+              <label class="mr-2 text-right col-3" for="inputname+`residence`+`${index}`">Residence</label>
+              <div class="col">
+                <input
+                  v-bind:id="inputname+`residence`+`${index}`"
+                  type="text"
+                  v-model="item.residence"
+                  class="form-control"
+                  aria-describedby="basic-addon2"
+                  v-bind:name="inputname+`[${index}]`+ '[residence]'"
+                  v-bind:disabled="disablecontrol"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col d-flex align-items-center">
+            <button
+              v-if="!disablecontrol"
+              class="btn btn-danger mx-2"
+              v-on:click="removeSponsor(index)"
+              type="button"
+            >Remove</button>
+          </div>
         </div>
 
-        <div class="form-group mx-1" v-if="includerelationship">
-          <label class="mr-2" for="inputname+`relations`+`${index}`">Relationship</label>
-          <input
-            v-bind:id="inputname+`relations`+`${index}`"
-            type="text"
-            v-model="item.relationship"
-            class="form-control"
-            aria-describedby="basic-addon2"
-            v-bind:name="inputname+`[${index}]`+ '[relationship]'"
-            v-bind:disabled="disablecontrol"
-          />
-        </div>
-
-        <div class>
-          <button
-            v-if="!disablecontrol"
-            class="btn btn-danger"
-            v-on:click="removeSponsor(index)"
-            type="button"
-          >Remove</button>
-        </div>
+        <hr class="my-3" v-if="index != sponsors.length -1" />
       </div>
     </div>
   </div>
@@ -62,7 +111,7 @@ export default {
     "formlabel",
     "inputname",
     "max",
-    "includerelationship"
+    "parental"
   ],
   data() {
     return {

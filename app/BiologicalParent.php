@@ -9,13 +9,13 @@ class BiologicalParent extends Model
     protected $table = 'parents';
 
     protected $fillable =  [
-        'name'
+        'name',
+        'relationship',
+        'citizenship',
+        'residence'
     ];
 
-    function parentable()
-    {
-        return $this->morphTo();
-    }
+    
 
     function getNameAttribute($value)
     {

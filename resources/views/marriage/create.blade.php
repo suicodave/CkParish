@@ -17,7 +17,7 @@ $faker = Faker\Factory::create() ;
     @endisset
 
     <div class="row">
-        <div class="col-8 offset-2">
+        <div class="col-12">
 
             <h3 class="card-title  mb-3 text-heading">
                 New Marriage
@@ -29,42 +29,42 @@ $faker = Faker\Factory::create() ;
 
                     <div class="col-12">
                         <h3 class="card-title text-heading">
-                            Groom
+                            Husband
                         </h3>
                         <div class="row">
                             <div class="form-group col-4 mt-3">
-                                <label for="fn">First Name</label>
-                                <input id="fn" placeholder="Ex. {{$faker->firstName}}" class="form-control" type="text"
+                                <label for="gfn">First Name</label>
+                                <input id="gfn" placeholder="Ex. {{$faker->firstName}}" class="form-control" type="text"
                                     name="customers[0][first_name]" @isset($model)
                                     value="{{$model->customer->first_name}}" @endisset>
 
-                                <input type="hidden" name="customers[0][role]" value="Groom">
+                                <input type="hidden" name="customers[0][role]" value="Husband">
                             </div>
 
                             <div class="form-group col-4 mt-3">
-                                <label for="mn">Middle Name</label>
-                                <input id="mn" placeholder="Ex. {{$faker->lastName}}" class="form-control" type="text"
+                                <label for="gmn">Middle Name</label>
+                                <input id="gmn" placeholder="Ex. {{$faker->lastName}}" class="form-control" type="text"
                                     name="customers[0][middle_name]" @isset($model)
                                     value="{{$model->customer->middle_name}}" @endisset>
                             </div>
 
                             <div class="form-group col-4 mt-3">
-                                <label for="ln">Last Name</label>
-                                <input id="ln" class="form-control" type="text" placeholder="Ex. {{$faker->lastName}}"
+                                <label for="gln">Last Name</label>
+                                <input id="gln" class="form-control" type="text" placeholder="Ex. {{$faker->lastName}}"
                                     name="customers[0][last_name]" @isset($model)
                                     value="{{$model->customer->last_name}}" @endisset>
                             </div>
 
                             <div class="form-group col-6 mt-3">
-                                <label for="bd">Birthdate</label>
-                                <input id="bd" class="form-control" type="date" name="customers[0][birthdate]"
+                                <label for="gbd">Birthdate</label>
+                                <input id="gbd" class="form-control" type="date" name="customers[0][birthdate]"
                                     @isset($model) value="{{$model->customer->birthdate}}" @endisset>
                             </div>
 
                             <div class="form-group col-6 mt-3">
-                                <label for="sex">Sex</label>
+                                <label for="groomsex">Sex</label>
 
-                                <select class="form-control" name="customers[0][sex]" id="sex">
+                                <select class="form-control" name="customers[0][sex]" id="groomsex">
 
                                     @foreach (['Male','Female'] as $sex)
                                     <option value="{{$sex}}" @isset($model)
@@ -84,8 +84,8 @@ $faker = Faker\Factory::create() ;
                 <div class="card-body">
 
                     <create-sponsor-input @isset($parents) :sponsorsprop='@json($parents)' @endisset @isset($showOnly)
-                        :disablecontrol="true" @endisset formlabel="Parents" inputname="customers[0][parents][]"
-                        max="2">
+                        :disablecontrol="true" @endisset formlabel="Parents" inputname="customers[0][parents]" max="2"
+                        :parental="true">
                     </create-sponsor-input>
 
                 </div>
@@ -97,7 +97,8 @@ $faker = Faker\Factory::create() ;
                 <div class="card-body">
 
                     <create-sponsor-input @isset($sponsors) :sponsorsprop='@json($sponsors)' @endisset @isset($showOnly)
-                        :disablecontrol="true" @endisset formlabel="Sponsors" inputname="customers[0][sponsors][]">
+                        :disablecontrol="true" @endisset formlabel="Sponsors" inputname="customers[0][sponsors]"
+                        :includerelationship="true">
                     </create-sponsor-input>
 
                 </div>
@@ -109,20 +110,20 @@ $faker = Faker\Factory::create() ;
     </div>
 
     <div class="row my-3">
-        <div class="col-8 offset-2">
+        <div class="col-12">
             <hr>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-8 offset-2">
+        <div class="col-12">
             <div class="card shadow-sm">
                 <div class="card-body">
 
 
                     <div class="col-12">
                         <h3 class="card-title text-heading ">
-                            Bride
+                            Wife
                         </h3>
                         <div class="row">
                             <div class="form-group col-4 mt-3">
@@ -131,7 +132,7 @@ $faker = Faker\Factory::create() ;
                                     name="customers[1][first_name]" @isset($model)
                                     value="{{$model->customer->first_name}}" @endisset>
 
-                                <input type="hidden" name="customers[1][role]" value="Bride">
+                                <input type="hidden" name="customers[1][role]" value="Wife">
                             </div>
 
                             <div class="form-group col-4 mt-3">
@@ -177,8 +178,8 @@ $faker = Faker\Factory::create() ;
                 <div class="card-body">
 
                     <create-sponsor-input @isset($parents) :sponsorsprop='@json($parents)' @endisset @isset($showOnly)
-                        :disablecontrol="true" @endisset formlabel="Parents" inputname="customers[1][parents][]"
-                        max="2">
+                        :disablecontrol="true" @endisset formlabel="Parents" inputname="customers[1][parents]" max="2"
+                        :parental="true">
                     </create-sponsor-input>
 
                 </div>
@@ -188,7 +189,8 @@ $faker = Faker\Factory::create() ;
                 <div class="card-body">
 
                     <create-sponsor-input @isset($sponsors) :sponsorsprop='@json($sponsors)' @endisset @isset($showOnly)
-                        :disablecontrol="true" @endisset formlabel="Sponsors" inputname="customers[1][sponsors][]">
+                        :disablecontrol="true" @endisset formlabel="Sponsors" :includerelationship="true"
+                        inputname="customers[1][sponsors]">
                     </create-sponsor-input>
 
                 </div>
