@@ -37,9 +37,20 @@ class Marriage extends BaseRepository
 
             $marriage->sponsors()->createMany($sponsorNames);
 
-            $marriage->parents()->createMany($parentNames);
+            $createdCustomer->parents()->createMany($parentNames);
         }
 
         return $marriage;
+    }
+
+    function prepareNameList($names)
+    {
+        $names = array_filter($names, function ($name) {
+            return count($name) != 0 || !isNull($name);
+        });
+
+        return array_map(function ($name) {
+            return $name;
+        }, $names);
     }
 }

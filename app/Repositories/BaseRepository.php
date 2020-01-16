@@ -34,7 +34,7 @@ class BaseRepository implements IssuesCertificates
 
     function prepareNameList($names)
     {
-        $names = array_filter($names, function ($name) {
+        $names = array_filter($names[0], function ($name) {
             return count($name) != 0 || !isNull($name);
         });
 
