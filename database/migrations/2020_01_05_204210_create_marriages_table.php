@@ -17,6 +17,7 @@ class CreateMarriagesTable extends Migration
             $table->bigIncrements('id');
             $table->string('priest_name');
             $table->date('wedding_date');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

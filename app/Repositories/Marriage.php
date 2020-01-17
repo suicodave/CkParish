@@ -13,6 +13,10 @@ class Marriage extends BaseRepository
 
     function create($attributes)
     {
+        $creator = Auth::id();
+
+        $attributes['created_by'] = $creator;
+
         $marriage = $this->model::create($attributes);
 
         $creator = Auth::id();
@@ -42,5 +46,4 @@ class Marriage extends BaseRepository
 
         return $marriage;
     }
-
 }
