@@ -6,8 +6,7 @@
 'Wedding Date',
 'Last Updated',
 'Action'
-]
-])
+]])
 
 @section('tbody')
 

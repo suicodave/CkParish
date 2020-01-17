@@ -57,9 +57,13 @@ class MarriageController extends Controller
      * @param  \App\Marriage  $marriage
      * @return \Illuminate\Http\Response
      */
-    public function show(Marriage $marriage)
+    public function show($id)
     {
-        //
+        $marriage = $this->marriage->show($id);
+
+        $marriage['showOnly'] = true;
+
+        return view('marriage.create', $marriage);
     }
 
     /**
