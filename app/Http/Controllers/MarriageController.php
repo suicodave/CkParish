@@ -22,7 +22,11 @@ class MarriageController extends Controller
      */
     public function index()
     {
-        //
+        $marriages = $this->marriage->paginate();
+
+        return view('marriage.index', [
+            'marriages' => $marriages
+        ]);
     }
 
     /**

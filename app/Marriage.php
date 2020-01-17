@@ -8,7 +8,8 @@ class Marriage extends Model
 {
     protected $fillable = [
         'priest_name',
-        'wedding_date'
+        'wedding_date',
+        'created_by'
     ];
 
     function participants()
@@ -26,5 +27,28 @@ class Marriage extends Model
     function sponsors()
     {
         return $this->morphMany(Sponsor::class, 'sponsorable');
+    }
+
+    function user()
+    {
+        return $this->belongsTo('App\User', 'created_by');
+    }
+
+    function getMarriedNamesAttribute()
+    {
+        $participants = $this->participants
+            ->map(function ($participant) {
+                $customer = $participant
+                    ->customer;
+
+                return $customer->first_name . " " . $customer->last_name;
+            })->all();
+
+        return implode(" and ", $participants);
+    }
+
+    function getPriestNameAttribute($value)
+    {
+        return ucwords($value);
     }
 }
