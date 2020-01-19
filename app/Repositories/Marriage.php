@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Customer;
 use App\Marriage as AppMarriage;
 use App\MarriageParticipant;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,10 @@ class Marriage extends BaseRepository
 
         $customers =   $attributes['customers'];
 
+        $sponsorNames = $this->prepareSponsorNames($attributes['sponsors']);
+
+        $marriage->sponsors()->createMany($sponsorNames);
+
         foreach ($customers as $customer) {
 
             $customer['created_by'] = $creator;
@@ -35,13 +40,41 @@ class Marriage extends BaseRepository
                 'customer_id' => $createdCustomer->id
             ]);
 
-            $sponsorNames = $this->prepareSponsorNames($customer['sponsors']);
-
             $parentNames = $this->prepareParentNames($customer['parents']);
 
-            $marriage->sponsors()->createMany($sponsorNames);
-
             $createdCustomer->parents()->createMany($parentNames);
+        }
+
+        return $marriage;
+    }
+
+    function update($attributes, $id)
+    {
+        $marriage = $this->model::find($id);
+
+        $marriage->update($attributes);
+
+        $sponsorNames = $this->prepareSponsorNames($attributes['sponsors']);
+
+        $marriage->sponsors()->delete();
+
+        $marriage->sponsors()->createMany($sponsorNames);
+
+        $participants = $attributes['customers'];
+
+        foreach ($participants as  $participantAttribute) {
+
+            $participant = MarriageParticipant::find($participantAttribute['participant_id']);
+
+            $customer = $participant->customer;
+
+            $customer->update($participantAttribute);
+
+            $parentNames = $this->prepareParentNames($participantAttribute['parents']);
+
+            $customer->parents()->delete();
+
+            $customer->parents()->createMany($parentNames);
         }
 
         return $marriage;
@@ -66,7 +99,7 @@ class Marriage extends BaseRepository
     }
 
 
-    protected function getParticipant($marriageId, $role)
+    function getParticipant($marriageId, $role)
     {
 
         return $this->model::with(['participants' => function ($query) use ($role) {

@@ -48,7 +48,10 @@ class MarriageController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->all();
-        return $this->marriage->create($attributes);
+
+        $this->marriage->create($attributes);
+
+        return redirect()->route('marriages.index');
     }
 
     /**
@@ -72,9 +75,11 @@ class MarriageController extends Controller
      * @param  \App\Marriage  $marriage
      * @return \Illuminate\Http\Response
      */
-    public function edit(Marriage $marriage)
+    public function edit($id)
     {
-        //
+        $marriage = $this->marriage->show($id);
+
+        return view('marriage.create', $marriage);
     }
 
     /**
@@ -84,9 +89,13 @@ class MarriageController extends Controller
      * @param  \App\Marriage  $marriage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marriage $marriage)
+    public function update(Request $request, $marriage)
     {
-        //
+        $attributes = $request->all();
+
+        $this->marriage->update($attributes, $marriage);
+
+        return redirect()->route('marriages.index');
     }
 
     /**
