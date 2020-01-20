@@ -60,6 +60,13 @@ $faker = Faker\Factory::create() ;
                                     value="{{$husband->customer->last_name}}" @endisset>
                             </div>
 
+                            <div class="form-group col-12 mt-3">
+                                <label for="ln">Residence</label>
+                                <input id="ln" class="form-control" type="text" placeholder="Ex. {{$faker->lastName}}"
+                                    name="customers[0][residence]" @isset($husband)
+                                    value="{{$husband->customer->residence}}" @endisset>
+                            </div>
+
                             <div class="form-group col-6 mt-3">
                                 <label for="gbd">Birthdate</label>
                                 <input id="gbd" class="form-control" type="date" name="customers[0][birthdate]"
@@ -144,6 +151,15 @@ $faker = Faker\Factory::create() ;
                                     name="customers[1][last_name]" @isset($wife) value="{{$wife->customer->last_name}}"
                                     @endisset>
                             </div>
+
+                            <div class="form-group col-12 mt-3">
+                                <label for="ln">Residence</label>
+                                <input id="ln" class="form-control" type="text" placeholder="Ex. {{$faker->lastName}}"
+                                    name="customers[1][residence]" @isset($wife) value="{{$wife->customer->residence}}"
+                                    @endisset>
+                            </div>
+
+
 
                             <div class="form-group col-6 mt-3">
                                 <label for="bd">Birthdate</label>
