@@ -56,6 +56,8 @@ Route::group(['middleware' => ['auth', 'user.default-password']], function () {
 
     Route::resource('marriages', 'MarriageController');
 
+    Route::resource('certificate_issuances', 'CertificateIssuanceController');
+
     Route::match(['get', 'post'], 'confirmations/print-previews/{confirmation}', 'ConfirmationPrintPreviewController@show')->name('confirmations.print-preview');
 
     Route::match(['get', 'post'], 'baptismals/print-previews/{baptismal}', 'BaptismalPrintPreviewController@show')->name('baptismals.print-preview');

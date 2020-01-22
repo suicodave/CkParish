@@ -42,6 +42,12 @@ class UserModule
                 'description' => 'Manage marital records and certificate issuances.',
                 'link' => route('marriages.index'),
                 'permission' => StaticPermission::VIEW_MARRIAGE_COMPONENT
+            ],
+            [
+                'name' => 'Certificate Issuances',
+                'description' => 'Get to know how many certificates have been issued.',
+                'link' => route('certificate_issuances.index'),
+                'permission' => StaticPermission::VIEW_CERTIFICATE_ISSUANCES
             ]
 
         ];

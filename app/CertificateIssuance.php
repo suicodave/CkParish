@@ -12,6 +12,10 @@ class CertificateIssuance extends Model
         'user_id'
     ];
 
+    protected $with = [
+        'user:id,email'
+    ];
+
     function issuable()
     {
         return $this->morphTo();
@@ -25,5 +29,15 @@ class CertificateIssuance extends Model
     function getPriestNameAttribute($value)
     {
         return ucwords($value);
+    }
+
+    function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    function getFormattedTypeAttribute()
+    {
+        return str_replace('App\\', '', $this->attributes['issuable_type']);
     }
 }

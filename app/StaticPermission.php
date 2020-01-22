@@ -19,6 +19,8 @@ class StaticPermission
 
     const VIEW_MARRIAGE_COMPONENT = 'view marriage component';
 
+    const VIEW_CERTIFICATE_ISSUANCES = 'view certificate issuances';
+
     const CREATE_ROLE = 'create role';
 
     const UPDATE_ROLE = 'update role';
