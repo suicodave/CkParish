@@ -40,4 +40,9 @@ class CertificateIssuance extends Model
     {
         return str_replace('App\\', '', $this->attributes['issuable_type']);
     }
+
+    function getCreatedTimeAttribute($value)
+    {
+        return $this->created_at->format('g:i A');
+    }
 }
