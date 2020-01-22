@@ -19,7 +19,14 @@
     <td>{{$certificate->priest_name}}</td>
     <td>{{($certificate->user->email)}}</td>
 
-    <td>{{$certificate->created_at}}</td>
+    <td>{{$certificate->created_at->toDayDateTimeString()}}</td>
+
+    <td>
+        <a class="btn btn-primary text-white">
+            <span class="fas fa-external-link-alt"></span>
+        </a>
+
+    </td>
 </tr>
 @endforeach
 
