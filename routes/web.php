@@ -47,6 +47,10 @@ Route::group(['middleware' => ['auth', 'user.default-password']], function () {
         Route::resource('issuances', 'BaptismIssuanceController');
     });
 
+    Route::group(['prefix' => 'marriages/{marriage}', 'as' => 'marriage.'], function () {
+        Route::resource('issuances', 'MarriageIssuanceController');
+    });
+
     Route::resource('baptismals', 'BaptismalController');
 
 
@@ -55,4 +59,6 @@ Route::group(['middleware' => ['auth', 'user.default-password']], function () {
     Route::match(['get', 'post'], 'confirmations/print-previews/{confirmation}', 'ConfirmationPrintPreviewController@show')->name('confirmations.print-preview');
 
     Route::match(['get', 'post'], 'baptismals/print-previews/{baptismal}', 'BaptismalPrintPreviewController@show')->name('baptismals.print-preview');
+
+    Route::match(['get', 'post'], 'marriages/print-previews/{marriage}', 'MarriagePrintPreviewController@show')->name('marriages.print-preview');
 });

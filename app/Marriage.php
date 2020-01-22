@@ -29,6 +29,11 @@ class Marriage extends Model
         return $this->morphMany(Sponsor::class, 'sponsorable');
     }
 
+    function issuances()
+    {
+        return $this->morphMany('App\CertificateIssuance', 'issuable');
+    }
+
     function user()
     {
         return $this->belongsTo('App\User', 'created_by');

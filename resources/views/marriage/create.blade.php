@@ -250,8 +250,8 @@ $faker = Faker\Factory::create() ;
 
 
                 @isset($showOnly)
-                <a href="{{route('baptismal.issuances.create',[
-                    'baptismal'=>$marriage->id
+                <a href="{{route('marriage.issuances.create',[
+                    'marriage'=>$marriage->id
                 ])}} " class="btn btn-primary">
                     Issue Certificate
                 </a>
