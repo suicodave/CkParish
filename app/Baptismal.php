@@ -52,4 +52,11 @@ class Baptismal extends Model
     {
         return $this->updated_at->format('g:i A');
     }
+
+    function getLink($id)
+    {
+        return route('baptismals.show', [
+            'baptismal' => $id
+        ]);
+    }
 }

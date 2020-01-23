@@ -53,4 +53,11 @@ class Confirmation extends Model
     {
         return $this->updated_at->format('g:i A');
     }
+
+    function getLink($id)
+    {
+        return route('confirmations.show', [
+            'confirmation' => $id
+        ]);
+    }
 }

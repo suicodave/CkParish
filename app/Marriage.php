@@ -56,4 +56,11 @@ class Marriage extends Model
     {
         return ucwords($value);
     }
+
+    function getLink($id)
+    {
+        return route('marriages.show', [
+            'marriage' => $id
+        ]);
+    }
 }
