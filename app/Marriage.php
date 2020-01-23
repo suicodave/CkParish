@@ -63,4 +63,9 @@ class Marriage extends Model
             'marriage' => $id
         ]);
     }
+
+    function getCustomerNameAttribute($value)
+    {
+        return $this->married_names;
+    }
 }

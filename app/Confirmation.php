@@ -60,4 +60,9 @@ class Confirmation extends Model
             'confirmation' => $id
         ]);
     }
+
+    function getCustomerNameAttribute($value)
+    {
+        return "{$this->customer->first_name} {$this->customer->last_name}";
+    }
 }

@@ -2,6 +2,7 @@
 'tableHeaders'=>[
 '#',
 'Type',
+'Subject',
 'Purpose',
 'Signed By',
 'Issued By',
@@ -15,6 +16,7 @@
 <tr>
     <th>{{$certificate->id}}</th>
     <td>{{$certificate->formatted_type}}</td>
+    <td>{{$certificate->issuable->customer_name}}</td>
     <td>{{$certificate->purpose}}</td>
     <td>{{$certificate->priest_name}}</td>
     <td>{{($certificate->user->email)}}</td>
