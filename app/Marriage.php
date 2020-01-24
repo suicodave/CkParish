@@ -16,6 +16,10 @@ class Marriage extends Model
         'participants'
     ];
 
+    protected $casts = [
+        'wedding_date' => 'date'
+    ];
+
     function participants()
     {
         return $this->hasMany(MarriageParticipant::class);
@@ -71,5 +75,10 @@ class Marriage extends Model
     function getCustomerNameAttribute($value)
     {
         return $this->married_names;
+    }
+
+    function getUpdatedTimeAttribute($value)
+    {
+        return $this->updated_at->format('g:i A');
     }
 }

@@ -32,13 +32,13 @@
     </td>
 
     <td>
-        {{$marriage->wedding_date}}
+        {{$marriage->wedding_date->toFormattedDateString()}}
     </td>
 
 
     <td>
         <div class="block">
-            {{$marriage->updated_at}}
+            {{$marriage->updated_at->toFormattedDateString()}}
         </div>
 
         <div class="block text-muted">
