@@ -63,4 +63,10 @@ Route::group(['middleware' => ['auth', 'user.default-password']], function () {
     Route::match(['get', 'post'], 'baptismals/print-previews/{baptismal}', 'BaptismalPrintPreviewController@show')->name('baptismals.print-preview');
 
     Route::match(['get', 'post'], 'marriages/print-previews/{marriage}', 'MarriagePrintPreviewController@show')->name('marriages.print-preview');
+
+    Route::group(['prefix' => 'charts'], function () {
+
+        Route::resource('issuances', 'CertificateIssuanceChartController')
+            ->only('index');
+    });
 });
