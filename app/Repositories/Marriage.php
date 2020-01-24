@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Customer;
 use App\Marriage as AppMarriage;
 use App\MarriageParticipant;
 use Illuminate\Support\Facades\Auth;
