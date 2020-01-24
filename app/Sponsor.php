@@ -20,4 +20,9 @@ class Sponsor extends Model
     {
         return ucwords($value);
     }
+
+    function getValueAttribute($value)
+    {
+        return ucwords($value);
+    }
 }

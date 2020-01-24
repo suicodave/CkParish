@@ -36,4 +36,9 @@ class BiologicalParent extends Model
     {
         return ucfirst($value);
     }
+
+    function getValueAttribute($value)
+    {
+        return ucwords($value);
+    }
 }
