@@ -41,6 +41,12 @@ class StaticPermission
 
     const ISSUE_BAPTISMAL_CERTIFICATE = 'issue baptismal certificate';
 
+    const CREATE_MARRIAGE = 'create marriage record';
+
+    const UPDATE_MARRIAGE = 'update marriage record';
+
+    const ISSUE_MARRIAGE_CERTIFICATE = 'issue marriage certificate';
+
     function predefinedPermissions()
     {
         $reflectionClass = new ReflectionClass($this);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Marriage;
 use App\Repositories\Marriage as RepositoriesMarriage;
+use App\StaticPermission;
 use Illuminate\Http\Request;
 
 class MarriageController extends Controller
@@ -13,6 +14,15 @@ class MarriageController extends Controller
 
     function __construct(RepositoriesMarriage $marriage)
     {
+        $this->checkRoleOrPermissions(StaticPermission::VIEW_BAPTISMAL_COMPONENT)
+            ->only(['index', 'show']);
+
+        $this->checkRoleOrPermissions(StaticPermission::CREATE_BAPTISMAL)
+            ->only(['create', 'store']);
+
+        $this->checkRoleOrPermissions(StaticPermission::UPDATE_BAPTISMAL)
+            ->only(['edit', 'update']);
+
         $this->marriage = $marriage;
     }
     /**

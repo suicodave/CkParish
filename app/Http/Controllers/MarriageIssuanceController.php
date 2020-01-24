@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Marriage;
+use App\StaticPermission;
 use App\Traits\IssuesCertificate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,8 @@ class MarriageIssuanceController extends Controller
 
     function __construct(Marriage $marriage)
     {
+        $this->checkRoleOrPermissions(StaticPermission::ISSUE_MARRIAGE_CERTIFICATE);
+
         $this->marriage = $marriage;
     }
 
