@@ -18,7 +18,8 @@ class Customer extends Model
         'birthdate',
         'residence',
         'religion',
-        'created_by'
+        'created_by',
+        'citizenship'
     ];
 
 
@@ -50,6 +51,21 @@ class Customer extends Model
     }
 
     function getLastNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    function getReligionAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    function getCitizenshipAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    function getResidenceAttribute($value)
     {
         return ucfirst($value);
     }

@@ -15,10 +15,25 @@ class BiologicalParent extends Model
         'residence'
     ];
 
-    
+
 
     function getNameAttribute($value)
     {
         return ucwords($value);
+    }
+
+    function getCitizenshipAttribute($value)
+    {
+        return ucwords($value);
+    }
+
+    function getRelationshipAttribute($value)
+    {
+        return ucwords($value);
+    }
+
+    function getResidenceAttribute($value)
+    {
+        return ucfirst($value);
     }
 }

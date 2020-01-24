@@ -12,6 +12,10 @@ class Marriage extends Model
         'created_by'
     ];
 
+    protected $with = [
+        'participants'
+    ];
+
     function participants()
     {
         return $this->hasMany(MarriageParticipant::class);

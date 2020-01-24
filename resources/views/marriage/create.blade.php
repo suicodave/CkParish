@@ -60,11 +60,23 @@ $faker = Faker\Factory::create() ;
                                     value="{{$husband->customer->last_name}}" @endisset>
                             </div>
 
+                            <div class="form-group col-6 mt-3">
+                                <label for="citizenship">Citizenship</label>
+                                <input id="citizenship" class="form-control" type="text"
+                                    name="customers[0][citizenship]" @isset($husband)
+                                    value="{{$husband->customer->citizenship}}" @endisset>
+                            </div>
+
+                            <div class="form-group col-6 mt-3">
+                                <label for="religion">Religion</label>
+                                <input id="religion" class="form-control" type="text" name="customers[0][religion]"
+                                    @isset($husband) value="{{$husband->customer->religion}}" @endisset>
+                            </div>
+
                             <div class="form-group col-12 mt-3">
-                                <label for="ln">Residence</label>
-                                <input id="ln" class="form-control" type="text" placeholder="Ex. {{$faker->lastName}}"
-                                    name="customers[0][residence]" @isset($husband)
-                                    value="{{$husband->customer->residence}}" @endisset>
+                                <label for="residence">Residence</label>
+                                <input id="residence" class="form-control" type="text" name="customers[0][residence]"
+                                    @isset($husband) value="{{$husband->customer->residence}}" @endisset>
                             </div>
 
                             <div class="form-group col-6 mt-3">
@@ -152,11 +164,23 @@ $faker = Faker\Factory::create() ;
                                     @endisset>
                             </div>
 
+                            <div class="form-group col-6 mt-3">
+                                <label for="citizenship">Citizenship</label>
+                                <input id="citizenship" class="form-control" type="text"
+                                    name="customers[1][citizenship]" @isset($husband)
+                                    value="{{$husband->customer->citizenship}}" @endisset>
+                            </div>
+
+                            <div class="form-group col-6 mt-3">
+                                <label for="religion">Religion</label>
+                                <input id="religion" class="form-control" type="text" name="customers[1][religion]"
+                                    @isset($husband) value="{{$husband->customer->religion}}" @endisset>
+                            </div>
+
                             <div class="form-group col-12 mt-3">
                                 <label for="ln">Residence</label>
-                                <input id="ln" class="form-control" type="text" placeholder="Ex. {{$faker->lastName}}"
-                                    name="customers[1][residence]" @isset($wife) value="{{$wife->customer->residence}}"
-                                    @endisset>
+                                <input id="ln" class="form-control" type="text" name="customers[1][residence]"
+                                    @isset($wife) value="{{$wife->customer->residence}}" @endisset>
                             </div>
 
 

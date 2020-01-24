@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'religion' => 'Roman Catholic'
+    'religion' => 'Roman Catholic',
+    'citizenship' => 'Filipino'
 ];

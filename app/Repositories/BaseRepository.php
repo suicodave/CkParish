@@ -12,7 +12,7 @@ class BaseRepository implements IssuesCertificates
 
     function all($columns = [])
     {
-        return $this->model::latest()->all();
+        return $this->model::latest()->all($columns);
     }
 
     function paginate($items = 15)
