@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Baptismal;
+use App\StaticPermission;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class BaptismalController extends Controller
 {
@@ -12,6 +12,15 @@ class BaptismalController extends Controller
 
     function __construct(Baptismal $baptismal)
     {
+        $this->checkRoleOrPermissions(StaticPermission::VIEW_BAPTISMAL_COMPONENT)
+            ->only(['index', 'show']);
+
+        $this->checkRoleOrPermissions(StaticPermission::CREATE_BAPTISMAL)
+            ->only(['create', 'store']);
+
+        $this->checkRoleOrPermissions(StaticPermission::UPDATE_BAPTISMAL)
+            ->only(['edit', 'update']);
+
         $this->baptismal = $baptismal;
     }
 

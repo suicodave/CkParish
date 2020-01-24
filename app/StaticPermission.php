@@ -35,6 +35,12 @@ class StaticPermission
 
     const ISSUE_CONFIRMATION_CERTIFICATE = 'issue confirmation certificate';
 
+    const CREATE_BAPTISMAL = 'create baptismal record';
+
+    const UPDATE_BAPTISMAL = 'update baptismal record';
+
+    const ISSUE_BAPTISMAL_CERTIFICATE = 'issue baptismal certificate';
+
     function predefinedPermissions()
     {
         $reflectionClass = new ReflectionClass($this);

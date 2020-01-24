@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Baptismal;
+use App\StaticPermission;
 use App\Traits\IssuesCertificate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,8 @@ class BaptismIssuanceController extends Controller
 
     function __construct(Baptismal $baptismal)
     {
+        $this->checkRoleOrPermissions(StaticPermission::ISSUE_BAPTISMAL_CERTIFICATE);
+
         $this->baptismal = $baptismal;
     }
 
