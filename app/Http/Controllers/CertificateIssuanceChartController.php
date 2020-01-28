@@ -11,22 +11,45 @@ class CertificateIssuanceChartController extends Controller
     {
         $chart = new CertificateIssuanceChart();
 
-        $chart->labels(['Jan', 'Feb', 'Mar']);
+        $months = $chart->months;
 
-        $chart->dataset('Baptismal', 'bar', [24, 6, 30])
-            ->color("rgb(255, 99, 132)")
-            ->backgroundcolor("rgb(255, 99, 132)");
+        $chart->labels($months);
 
-        $chart->dataset('Confirmation', 'bar', [22, 62, 4])
-            ->color("rgb(115, 99, 172)")
-            ->backgroundcolor("rgb(115, 99, 172)");
+        $datasets = $chart->getIssuableTypes();
 
-        $chart->dataset('Marriage', 'bar', [12, 6, 16])
-        ->color("rgb(213, 59, 72)")
-            ->backgroundcolor("rgb(213, 59, 72)");
+        foreach ($datasets as $dataset) {
+
+            $counts = [];
+
+            foreach ($months as $month) {
+                $counts[] = $chart->getData($month, $dataset);
+            }
+
+            $chart->dataset($dataset, 'bar', $counts)
+                ->color("rgb({$this->randomRGB()}}, {$this->randomRGB()},{$this->randomRGB()})")
+                ->backgroundcolor("rgb({$this->randomRGB()}, {$this->randomRGB()}, {$this->randomRGB()})");
+        }
+
+
+
+        // $chart->dataset('Confirmation', 'bar', $dataset[1])
+        //     ->color("rgb(115, 99, 172)")
+        //     ->backgroundcolor("rgb(115, 99, 172)");
+
+        // $chart->dataset('Marriage', 'bar', $dataset[2])
+        //     ->color("rgb(213, 59, 72)")
+        //     ->backgroundcolor("rgb(213, 59, 72)");
+
+
 
         return view('issuance-chart.index', [
             'chart' => $chart
         ]);
+    }
+
+
+    private function randomRGB()
+    {
+        return mt_rand(0, 255);
     }
 }
