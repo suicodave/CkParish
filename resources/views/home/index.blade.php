@@ -18,7 +18,7 @@
 
         @if ($user->hasModule($module['permission']))
         <div class="col-3 d-flex align-items-stretch">
-            <div class="card text-dark shadow-sm     mb-4">
+            <div class="card w-100 text-dark shadow-sm     mb-4">
 
 
                 <div class="card-body">
