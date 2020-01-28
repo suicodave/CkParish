@@ -45,8 +45,14 @@ class UserModule
             ],
             [
                 'name' => 'Certificate Issuances',
-                'description' => 'Get to know how many certificates have been issued.',
+                'description' => 'See issued certificates.',
                 'link' => route('certificate_issuances.index'),
+                'permission' => StaticPermission::VIEW_CERTIFICATE_ISSUANCES
+            ],
+            [
+                'name' => 'Certificate Issuances Chart',
+                'description' => 'Get to know how many certificates have been issued.',
+                'link' => route('charts.issuances.index'),
                 'permission' => StaticPermission::VIEW_CERTIFICATE_ISSUANCES
             ]
 
