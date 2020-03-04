@@ -11,6 +11,18 @@ class ConfirmationController extends Controller
 {
     private $confirmation;
 
+    const REQUEST_ATTRIBUTES = [
+        'first_name'=>'required',
+        'middle_name'=>'required',
+        'last_name'=>'required',
+        'birthdate'=>'required',
+        'sex'=>'required',
+        'priest_name'=>'required',
+        'confirmation_date'=>'required',
+        'sponsors.*.name'=>'filled',
+        'parents.*.name'=>'filled'
+    ];
+
     function __construct(Confirmation $confirmation)
     {
         $this->checkRoleOrPermissions(StaticPermission::VIEW_CONFIRMATION_COMPONENT)
@@ -56,6 +68,8 @@ class ConfirmationController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(self::REQUEST_ATTRIBUTES);
+
         $attributes = $request->all();
 
         $this->confirmation->create($attributes);
@@ -100,6 +114,8 @@ class ConfirmationController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate(self::REQUEST_ATTRIBUTES);
+
         $attributes = $request->all();
 
         $this->confirmation->update($attributes, $id);
