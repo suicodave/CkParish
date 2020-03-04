@@ -130,9 +130,14 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        'customers'=> [
+            '0'=>[
+                'parents.*.name.filled'=>'husband\'s parent\'s name should not be empty'
+            ],
+            '1'=>[
+                'parents.*.name.filled'=>'wife\'s parent\'s name should not be empty'
+            ]
+        ]
     ],
 
     /*
@@ -146,6 +151,25 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'customers.0.first_name' => 'husband\'s first name',
+        'customers.1.first_name' => 'wife\'s first name',
+        'customers.0.middle_name'=> 'husband\'s middle name',
+        'customers.1.middle_name'=> 'wife\'s middle name',
+        'customers.0.last_name'=> 'husband\'s last name',
+        'customers.1.last_name'=> 'wife\'s last name',
+        'customers.0.citizenship'=> 'husband\'s citizenship',
+        'customers.1.citizenship'=> 'wife\'s citizenship',
+        'customers.0.religion' => 'husband\'s religion',
+        'customers.1.religion' => 'wife\'s religion',
+        'customers.0.residence' => 'husband\'s residence',
+        'customers.1.residence' => 'wife\'s residence',
+        'customers.0.birthdate'=> 'husband\'s birthdate',
+        'customers.1.birthdate'=> 'wife\'s birthdate',
+        'customers.0.parents.*.name'=> 'husband\'s parent\'s name',
+        'sponsors.*.name'=>'sponsor',
+        'parents.*.name'=>'parent'
+        
+    ],
 
 ];
