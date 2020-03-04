@@ -12,6 +12,22 @@ class MarriageController extends Controller
 
     private $marriage;
 
+    const REQUEST_ATTRIBUTES = [
+        'customers.*.first_name' => 'required',
+        'customers.*.role' => 'required',
+        'customers.*.middle_name' => 'required',
+        'customers.*.last_name' => 'required',
+        'customers.*.citizenship' => 'required',
+        'customers.*.religion' => 'required',
+        'customers.*.residence' => 'required',
+        'customers.*.birthdate' => 'required',
+        'customers.*.sex' => 'required',
+        'customers.*.parents.*.name'=>'filled',
+        'priest_name'=>'required',
+        'wedding_date'=>'required',
+        'sponsors.*.name'=>'filled'
+    ];
+
     function __construct(RepositoriesMarriage $marriage)
     {
         $this->checkRoleOrPermissions(StaticPermission::VIEW_BAPTISMAL_COMPONENT)
@@ -57,6 +73,8 @@ class MarriageController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(self::REQUEST_ATTRIBUTES);
+        
         $attributes = $request->all();
 
         $this->marriage->create($attributes);
@@ -101,6 +119,8 @@ class MarriageController extends Controller
      */
     public function update(Request $request, $marriage)
     {
+        $request->validate(self::REQUEST_ATTRIBUTES);
+        
         $attributes = $request->all();
 
         $this->marriage->update($attributes, $marriage);
