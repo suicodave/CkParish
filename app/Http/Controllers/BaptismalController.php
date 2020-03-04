@@ -10,6 +10,18 @@ class BaptismalController extends Controller
 {
     private $baptismal;
 
+    const REQUEST_ATTRIBUTES = [
+        'first_name'=>'required',
+        'middle_name'=>'required',
+        'last_name'=>'required',
+        'birthdate'=>'required',
+        'sex'=>'required',
+        'priest_name'=>'required',
+        'baptismal_date'=>'required',
+        'sponsors.*.name'=>'filled',
+        'parents.*.name'=>'filled'
+    ];
+
     function __construct(Baptismal $baptismal)
     {
         $this->checkRoleOrPermissions(StaticPermission::VIEW_BAPTISMAL_COMPONENT)
@@ -40,6 +52,8 @@ class BaptismalController extends Controller
 
     function store(Request $request)
     {
+        $request->validate(self::REQUEST_ATTRIBUTES);
+        
         $attributes = $request->all();
 
         $this->baptismal->create($attributes);
@@ -66,6 +80,8 @@ class BaptismalController extends Controller
 
     function update(Request $request, $id)
     {
+        $request->validate(self::REQUEST_ATTRIBUTES);
+        
         $attributes = $request->all();
 
         $this->baptismal->update($attributes, $id);
