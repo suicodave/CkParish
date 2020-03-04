@@ -55,6 +55,7 @@ class BaseRepository implements IssuesCertificates
 
     function create($attributes)
     {
+        $attributes = $this->sanitizeBlankArrayAttributes($attributes, ['sponsors', 'parents']);
         $userId = Auth::id();
 
         $attributes['created_by'] = $userId;
@@ -77,17 +78,30 @@ class BaseRepository implements IssuesCertificates
         return $model;
     }
 
+    private function sanitizeBlankArrayAttributes($attributes, array $indexNames)
+    {
+        foreach ($indexNames as $indexName) {
+            if (!array_key_exists($indexName, $attributes)) {
+                $attributes[$indexName] = [];
+            }
+        }
+
+        return $attributes;
+    }
+
     function update($attributes, $id)
     {
+        $attributes = $this->sanitizeBlankArrayAttributes($attributes, ['sponsors', 'parents']);
+
         $model = $this->model::find($id);
 
         $model->update($attributes);
 
         $model->customer->update($attributes);
 
-        $parents = $this->prepareParentNames($attributes['parents'] ?? []);
+        $parents = $this->prepareParentNames($attributes['parents']);
 
-        $sponsors = $this->prepareSponsorNames($attributes['sponsors'] ?? []);
+        $sponsors = $this->prepareSponsorNames($attributes['sponsors']);
 
         $model->sponsors()->delete();
 
