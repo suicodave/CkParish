@@ -47,6 +47,14 @@ class StaticPermission
 
     const ISSUE_MARRIAGE_CERTIFICATE = 'issue marriage certificate';
 
+    const VIEW_PRIEST_COMPONENT = 'view priest component';
+
+    const CREATE_PRIEST = 'create priest\'s record';
+
+    const UPDATE_PRIEST = 'update priest\'s record';
+
+
+
     function predefinedPermissions()
     {
         $reflectionClass = new ReflectionClass($this);

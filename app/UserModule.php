@@ -44,6 +44,12 @@ class UserModule
                 'permission' => StaticPermission::VIEW_MARRIAGE_COMPONENT
             ],
             [
+                'name' => 'Priest Registry',
+                'description' => 'Manage priests.',
+                'link' => route('priests.index'),
+                'permission' => StaticPermission::VIEW_PRIEST_COMPONENT
+            ],
+            [
                 'name' => 'Certificate Issuances',
                 'description' => 'See issued certificates.',
                 'link' => route('certificate_issuances.index'),
