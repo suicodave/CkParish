@@ -10,9 +10,18 @@ class BaseRepository implements IssuesCertificates
 {
     protected $model;
 
+    protected $with = [];
+
+    function with(array $with = [])
+    {
+        $this->with = $with;
+
+        return $this;
+    }
+
     function all($columns = [])
     {
-        return $this->model::latest()->all($columns);
+        return $this->model::with($this->with)->latest()->all($columns);
     }
 
     function paginate($items = 15)

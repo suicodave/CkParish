@@ -89,9 +89,29 @@ $faker = Faker\Factory::create() ;
                         <div class="row">
                             <div class="form-group col-6 mt-3">
                                 <label for="pn">Priest Name</label>
-                                <input id="pn" class="form-control" type="text" name="priest_name"
-                                    placeholder="Ex. {{$faker->name}}" @isset($model) value="{{$model->priest_name}}"
-                                    @endisset>
+
+                                <select name="priest_id" class="form-control">
+                                    @isset($priests)
+                                    @foreach ($priests as $priest)
+                                    <option value="{{$priest->id}}" @isset($model) @if($model->priest_id == $priest->id)
+                                        selected
+                                        @endif
+                                        @endisset
+                                        >
+                                        {{$priest->name}}
+                                    </option>
+                                    @endforeach
+                                    @endisset
+
+                                    @empty($priests)
+                                    @isset($model)
+                                    <option value="">{{$model->priest_name}} </option>
+                                    @endisset
+                                    @endempty
+
+                                </select>
+
+
                             </div>
 
                             <div class="form-group col-6 mt-3">

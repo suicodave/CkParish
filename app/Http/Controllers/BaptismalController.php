@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Priest;
 use App\Repositories\Baptismal;
 use App\StaticPermission;
 use Illuminate\Http\Request;
@@ -11,15 +12,15 @@ class BaptismalController extends Controller
     private $baptismal;
 
     const REQUEST_ATTRIBUTES = [
-        'first_name'=>'required',
-        'middle_name'=>'required',
-        'last_name'=>'required',
-        'birthdate'=>'required',
-        'sex'=>'required',
-        'priest_name'=>'required',
-        'baptismal_date'=>'required',
-        'sponsors.*.name'=>'filled',
-        'parents.*.name'=>'filled'
+        'first_name' => 'required',
+        'middle_name' => 'required',
+        'last_name' => 'required',
+        'birthdate' => 'required',
+        'sex' => 'required',
+        'priest_id' => 'required',
+        'baptismal_date' => 'required',
+        'sponsors.*.name' => 'filled',
+        'parents.*.name' => 'filled'
     ];
 
     function __construct(Baptismal $baptismal)
@@ -38,7 +39,7 @@ class BaptismalController extends Controller
 
     function index()
     {
-        $baptismals = $this->baptismal->paginate();
+        $baptismals = $this->baptismal->with(['priest'])->paginate();
 
         return view('baptismal.index', [
             'baptismals' => $baptismals
@@ -47,13 +48,19 @@ class BaptismalController extends Controller
 
     function create()
     {
-        return view('baptismal.create');
+        $priests = Priest::select(['id', 'name'])
+            ->oldest('name')
+            ->get();
+
+        return view('baptismal.create', [
+            'priests' => $priests
+        ]);
     }
 
     function store(Request $request)
     {
         $request->validate(self::REQUEST_ATTRIBUTES);
-        
+
         $attributes = $request->all();
 
         $this->baptismal->create($attributes);
@@ -75,13 +82,19 @@ class BaptismalController extends Controller
     {
         $baptismal = $this->baptismal->show($id);
 
-        return view('baptismal.create', $baptismal);
+        $priests = Priest::select(['id', 'name'])
+            ->oldest('name')
+            ->get();
+
+        return view('baptismal.create', $baptismal, [
+            'priests' => $priests
+        ]);
     }
 
     function update(Request $request, $id)
     {
         $request->validate(self::REQUEST_ATTRIBUTES);
-        
+
         $attributes = $request->all();
 
         $this->baptismal->update($attributes, $id);

@@ -13,10 +13,15 @@ class Baptismal extends Model
 
     protected $fillable = [
         'customer_id',
-        'priest_name',
+        'priest_id',
         'baptismal_date',
         'created_by'
     ];
+
+    function priest()
+    {
+        return $this->belongsTo(Priest::class);
+    }
 
     function customer()
     {
@@ -35,7 +40,7 @@ class Baptismal extends Model
 
     function getPriestNameAttribute($value)
     {
-        return ucwords($value);
+        return ucwords($this->priest->name);
     }
 
     function getBaptismalDateAttribute($value)

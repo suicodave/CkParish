@@ -16,7 +16,7 @@ class CreateBaptismalsTable extends Migration
         Schema::create('baptismals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('customer_id');
-            $table->string('priest_name');
+            $table->unsignedInteger('priest_id');
             $table->date('baptismal_date');
             $table->unsignedInteger('created_by');
             $table->timestamps();

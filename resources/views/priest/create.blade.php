@@ -6,12 +6,17 @@
             'priest'=>$priest->id
         ])}}" @endisset>
     <div class="row">
-        <div class="col-4">
+        <div class="col-4 offset-4">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <div class="col-12">
                         <h3 class="card-title text-heading">
+                            @empty($priest)
                             New Priest
+                            @endempty
+                            @isset($priest)
+                            Update Priest
+                            @endisset
                         </h3>
                     </div>
 
