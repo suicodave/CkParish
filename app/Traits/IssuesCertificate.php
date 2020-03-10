@@ -16,7 +16,8 @@ trait IssuesCertificate
             $this->key => request()->{$this->key},
             'purpose' => request()->purpose,
             'priest' => request()->priest_name,
+            'issueId' => $certificate->id
 
-        ])->with(['issueId' => $certificate->id]);
+        ]);
     }
 }
