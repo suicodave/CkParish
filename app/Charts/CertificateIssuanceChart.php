@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Log;
 class CertificateIssuanceChart extends Chart
 {
     public $months = [];
+
+    private $issuableTypes = [];
     /**
      * Initializes the chart.
      *
@@ -25,12 +27,19 @@ class CertificateIssuanceChart extends Chart
 
     public function getIssuableTypes()
     {
-        return CertificateIssuance::groupBy('issuable_type')
+        $this->issuableTypes = CertificateIssuance::groupBy('issuable_type')
             ->orderBy('issuable_type', 'asc')
             ->get()
             ->map(function ($issuable) {
                 return str_replace('App\\', '', $issuable->issuable_type);
             })->all();
+
+        return $this->issuableTypes;
+    }
+
+    public function hasIssuableTypes()
+    {
+        return !empty($this->issuableTypes);
     }
 
     function getLast3Months()

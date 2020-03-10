@@ -17,34 +17,29 @@ class CertificateIssuanceChartController extends Controller
 
         $datasets = $chart->getIssuableTypes();
 
-        foreach ($datasets as $dataset) {
+        if ($chart->hasIssuableTypes()) {
+            foreach ($datasets as $dataset) {
 
-            $counts = [];
+                $counts = [];
 
-            foreach ($months as $month) {
-                $counts[] = $chart->getData($month, $dataset);
+                foreach ($months as $month) {
+                    $counts[] = $chart->getData($month, $dataset) || 0;
+                }
+
+                $chart->dataset($dataset, 'bar', $counts)
+                    ->color("rgb({$this->randomRGB()}}, {$this->randomRGB()},{$this->randomRGB()})")
+                    ->backgroundcolor("rgb({$this->randomRGB()}, {$this->randomRGB()}, {$this->randomRGB()})");
             }
 
-            $chart->dataset($dataset, 'bar', $counts)
-                ->color("rgb({$this->randomRGB()}}, {$this->randomRGB()},{$this->randomRGB()})")
-                ->backgroundcolor("rgb({$this->randomRGB()}, {$this->randomRGB()}, {$this->randomRGB()})");
+
+
+
+            return view('issuance-chart.index', [
+                'chart' => $chart
+            ]);
         }
 
-
-
-        // $chart->dataset('Confirmation', 'bar', $dataset[1])
-        //     ->color("rgb(115, 99, 172)")
-        //     ->backgroundcolor("rgb(115, 99, 172)");
-
-        // $chart->dataset('Marriage', 'bar', $dataset[2])
-        //     ->color("rgb(213, 59, 72)")
-        //     ->backgroundcolor("rgb(213, 59, 72)");
-
-
-
-        return view('issuance-chart.index', [
-            'chart' => $chart
-        ]);
+        return view('issuance-chart.index');
     }
 
 
