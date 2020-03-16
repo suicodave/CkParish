@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Marriage extends Model
 {
     protected $fillable = [
-        'priest_name',
+        'priest_id',
         'wedding_date',
         'created_by'
     ];
@@ -60,9 +60,9 @@ class Marriage extends Model
         return implode(" and ", $participants);
     }
 
-    function getPriestNameAttribute($value)
+    function priest()
     {
-        return ucwords($value);
+        return $this->belongsTo(Priest::class);
     }
 
     function getLink($id)
@@ -80,5 +80,10 @@ class Marriage extends Model
     function getUpdatedTimeAttribute($value)
     {
         return $this->updated_at->format('g:i A');
+    }
+
+    function getPriestNameAttribute($value)
+    {
+        return ucwords($this->priest->name);
     }
 }

@@ -7,12 +7,12 @@
 $faker = Faker\Factory::create() ;
 @endphp
 
-<form method="POST" @empty($marriage) action="{{route('marriages.store')}}" @endempty @isset($marriage) action="{{route('marriages.update',[
-    'marriage'=>$marriage->id
+<form method="POST" @empty($model) action="{{route('marriages.store')}}" @endempty @isset($model) action="{{route('marriages.update',[
+    'marriage'=>$model->id
 ])}}" @endisset>
     @csrf
 
-    @isset($marriage)
+    @isset($model)
     @method('PUT')
     @endisset
 
@@ -225,7 +225,7 @@ $faker = Faker\Factory::create() ;
             <div class="card shadow-sm">
                 <div class="card-body">
 
-                    <create-sponsor-input @isset($marriage) :sponsorsprop='@json($marriage->sponsors)' @endisset
+                    <create-sponsor-input @isset($model) :sponsorsprop='@json($model->sponsors)' @endisset
                         @isset($showOnly) :disablecontrol="true" @endisset formlabel="Sponsors"
                         :includerelationship="true" inputname="sponsors">
                     </create-sponsor-input>
@@ -240,15 +240,33 @@ $faker = Faker\Factory::create() ;
                         <div class="row">
                             <div class="form-group col-6 mt-3">
                                 <label for="pn">Priest Name</label>
-                                <input id="pn" class="form-control" type="text" name="priest_name"
-                                    placeholder="Ex. {{$faker->name}}" @isset($marriage)
-                                    value="{{$marriage->priest_name}}" @endisset>
+                                <select name="priest_id" class="form-control">
+                                    @isset($priests)
+                                    @foreach ($priests as $priest)
+                                    <option value="{{$priest->id}}" @isset($model) @if($model->priest_id == $priest->id)
+                                        selected
+                                        @endif
+                                        @endisset
+                                        >
+                                        {{$priest->name}}
+                                    </option>
+                                    @endforeach
+                                    @endisset
+
+                                    @empty($priests)
+                                    @isset($model)
+                                    <option value="">{{$model->priest_name}} </option>
+                                    @endisset
+                                    @endempty
+
+                                </select>
                             </div>
 
                             <div class="form-group col-6 mt-3">
                                 <label for="cd">Wedding Date</label>
-                                <input id="cd" class="form-control" type="date" name="wedding_date" @isset($marriage)
-                                    value="{{$marriage->wedding_date}}" @endisset>
+                                <input id="cd" class="form-control" type="date" name="wedding_date" @isset($model)
+                                    value="{{$model->wedding_date->toDateString()}}" @endisset>
+
                             </div>
                         </div>
                     </div>
@@ -262,11 +280,11 @@ $faker = Faker\Factory::create() ;
             <div class="float-right mt-3">
                 @empty($showOnly)
                 <button class="btn btn-primary shadow-sm" type="submit">
-                    @isset($marriage)
+                    @isset($model)
                     Update
                     @endisset
 
-                    @empty($marriage)
+                    @empty($model)
                     Create
                     @endempty
                 </button>
@@ -275,7 +293,7 @@ $faker = Faker\Factory::create() ;
 
                 @isset($showOnly)
                 <a href="{{route('marriage.issuances.create',[
-                    'marriage'=>$marriage->id
+                    'marriage'=>$model->id
                 ])}} " class="btn btn-primary">
                     Issue Certificate
                 </a>

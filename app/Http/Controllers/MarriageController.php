@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Marriage;
+use App\Priest;
 use App\Repositories\Marriage as RepositoriesMarriage;
 use App\StaticPermission;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class MarriageController extends Controller
         'customers.*.birthdate' => 'required',
         'customers.*.sex' => 'required',
         'customers.*.parents.*.name'=>'filled',
-        'priest_name'=>'required',
+        'priest_id'=>'required',
         'wedding_date'=>'required',
         'sponsors.*.name'=>'filled'
     ];
@@ -48,7 +49,7 @@ class MarriageController extends Controller
      */
     public function index()
     {
-        $marriages = $this->marriage->paginate();
+        $marriages = $this->marriage->with(['priest'])->paginate();
 
         return view('marriage.index', [
             'marriages' => $marriages
@@ -62,7 +63,13 @@ class MarriageController extends Controller
      */
     public function create()
     {
-        return view('marriage.create');
+        $priests = Priest::select(['id', 'name'])
+            ->oldest('name')
+            ->get();
+
+        return view('marriage.create',[
+            'priests' => $priests
+        ]);
     }
 
     /**
@@ -107,7 +114,13 @@ class MarriageController extends Controller
     {
         $marriage = $this->marriage->show($id);
 
-        return view('marriage.create', $marriage);
+        $priests = Priest::select(['id', 'name'])
+            ->oldest('name')
+            ->get();
+
+        return view('marriage.create', $marriage,[
+            'priests'=>$priests
+        ]);
     }
 
     /**

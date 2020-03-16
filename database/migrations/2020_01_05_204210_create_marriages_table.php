@@ -15,7 +15,7 @@ class CreateMarriagesTable extends Migration
     {
         Schema::create('marriages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('priest_name');
+            $table->unsignedInteger('priest_id');
             $table->date('wedding_date');
             $table->integer('created_by');
             $table->timestamps();

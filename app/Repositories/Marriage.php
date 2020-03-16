@@ -91,7 +91,7 @@ class Marriage extends BaseRepository
         $wife = $this->getParticipant($id, 'Wife');
 
         return [
-            'marriage' => $marriage,
+            'model' => $marriage,
             'husband' => $husband,
             'wife' => $wife
         ];
