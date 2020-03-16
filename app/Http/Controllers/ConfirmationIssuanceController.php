@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Priest;
 use App\Repositories\Confirmation;
 use App\StaticPermission;
 use App\Traits\IssuesCertificate;
@@ -32,8 +33,13 @@ class ConfirmationIssuanceController extends Controller
      */
     public function create($confirmation)
     {
+        $priests = Priest::select(['id', 'name'])
+            ->oldest('name')
+            ->get();
+
         $data = [
-            'confirmation' => $confirmation
+            'confirmation' => $confirmation,
+            'priests' => $priests
         ];
         return view('confirmation.issuance.create', $data);
     }
