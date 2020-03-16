@@ -16,7 +16,7 @@ class CreateCertificateIssuancesTable extends Migration
         Schema::create('certificate_issuances', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('purpose');
-            $table->string('priest_name');
+            $table->unsignedInteger('priest_id');
             $table->bigInteger('user_id');
             $table->morphs('issuable');
             $table->timestamps();

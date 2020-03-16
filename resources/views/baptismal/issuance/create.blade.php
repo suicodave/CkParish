@@ -20,7 +20,26 @@
 
                             <div class="form-group ">
                                 <label for="priest" class="col-form-label">Parish Priest</label>
-                                <input type="text" name="priest_name" class="form-control" id="priest">
+                                <select name="priest_id" class="form-control">
+                                    @isset($priests)
+                                    @foreach ($priests as $priest)
+                                    <option value="{{$priest->id}}" @isset($model) @if($model->priest_id == $priest->id)
+                                        selected
+                                        @endif
+                                        @endisset
+                                        >
+                                        {{$priest->name}}
+                                    </option>
+                                    @endforeach
+                                    @endisset
+
+                                    @empty($priests)
+                                    @isset($model)
+                                    <option value="">{{$model->priest_name}} </option>
+                                    @endisset
+                                    @endempty
+
+                                </select>
                             </div>
                         </div>
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CertificateIssuance extends Model
 {
     protected $fillable = [
-        'priest_name',
+        'priest_id',
         'purpose',
         'user_id'
     ];
@@ -15,6 +15,11 @@ class CertificateIssuance extends Model
     protected $with = [
         'user:id,email'
     ];
+
+    function priest()
+    {
+        return $this->belongsTo(Priest::class);
+    }
 
     function issuable()
     {
@@ -28,7 +33,7 @@ class CertificateIssuance extends Model
 
     function getPriestNameAttribute($value)
     {
-        return ucwords($value);
+        return ucwords($this->priest->name);
     }
 
     function user()

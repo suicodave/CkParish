@@ -15,7 +15,7 @@ trait IssuesCertificate
         return redirect()->action($this->redirectCertificate, [
             $this->key => request()->{$this->key},
             'purpose' => request()->purpose,
-            'priest' => request()->priest_name,
+            'priest' => $certificate->priest_name,
             'issueId' => $certificate->id
 
         ]);

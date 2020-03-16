@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Priest;
 use App\Repositories\Baptismal;
 use App\StaticPermission;
 use App\Traits\IssuesCertificate;
@@ -27,8 +28,13 @@ class BaptismIssuanceController extends Controller
 
     function create($baptismal)
     {
+        $priests = Priest::select(['id', 'name'])
+            ->oldest('name')
+            ->get();
+            
         $data = [
-            'baptismal' => $baptismal
+            'baptismal' => $baptismal,
+            'priests'=>$priests
         ];
 
         return view('baptismal.issuance.create', $data);
