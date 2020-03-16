@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Priest;
 use App\Repositories\Confirmation;
 use App\StaticPermission;
 use Illuminate\Http\Request;
@@ -12,15 +13,15 @@ class ConfirmationController extends Controller
     private $confirmation;
 
     const REQUEST_ATTRIBUTES = [
-        'first_name'=>'required',
-        'middle_name'=>'required',
-        'last_name'=>'required',
-        'birthdate'=>'required',
-        'sex'=>'required',
-        'priest_name'=>'required',
-        'confirmation_date'=>'required',
-        'sponsors.*.name'=>'filled',
-        'parents.*.name'=>'filled'
+        'first_name' => 'required',
+        'middle_name' => 'required',
+        'last_name' => 'required',
+        'birthdate' => 'required',
+        'sex' => 'required',
+        'priest_id' => 'required',
+        'confirmation_date' => 'required',
+        'sponsors.*.name' => 'filled',
+        'parents.*.name' => 'filled'
     ];
 
     function __construct(Confirmation $confirmation)
@@ -43,7 +44,8 @@ class ConfirmationController extends Controller
      */
     public function index()
     {
-        $confirmations = $this->confirmation->paginate();
+        $confirmations = $this->confirmation->with(['priest'])
+            ->paginate();
 
         return view('confirmation.index', [
             'confirmations' => $confirmations
@@ -57,7 +59,13 @@ class ConfirmationController extends Controller
      */
     public function create()
     {
-        return view('confirmation.create');
+        $priests = Priest::select(['id', 'name'])
+            ->oldest('name')
+            ->get();
+
+        return view('confirmation.create', [
+            'priests' => $priests
+        ]);
     }
 
     /**
@@ -102,7 +110,13 @@ class ConfirmationController extends Controller
     {
         $confirmation = $this->confirmation->show($id);
 
-        return view('confirmation.create', $confirmation);
+        $priests = Priest::select(['id', 'name'])
+            ->oldest('name')
+            ->get();
+
+        return view('confirmation.create', $confirmation,[
+            'priests'=>$priests
+        ]);
     }
 
     /**

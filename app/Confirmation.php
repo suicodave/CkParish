@@ -13,15 +13,22 @@ class Confirmation extends Model
 
     protected $fillable = [
         'customer_id',
-        'priest_name',
+        'priest_id',
         'confirmation_date',
         'created_by',
     ];
+
+    function priest()
+    {
+        return $this->belongsTo(Priest::class);
+    }
 
     function customer()
     {
         return $this->belongsTo('App\Customer');
     }
+
+    
 
     function sponsors()
     {
@@ -41,7 +48,7 @@ class Confirmation extends Model
 
     function getPriestNameAttribute($value)
     {
-        return ucwords($value);
+        return ucwords($this->priest->name);
     }
 
     function getCreatedTimeAttribute($value)

@@ -16,7 +16,7 @@ class CreateConfirmationsTable extends Migration
         Schema::create('confirmations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('customer_id');
-            $table->string('priest_name');
+            $table->unsignedInteger('priest_id');
             $table->date('confirmation_date');
             $table->unsignedInteger('created_by');
             $table->timestamps();
