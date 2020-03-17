@@ -1,4 +1,7 @@
-@extends('base-entity-create-form')
+@extends('base-entity-create-form',[
+    'previousPageLinkName'=>'roles.index'
+])
+
 
 @section('form')
 

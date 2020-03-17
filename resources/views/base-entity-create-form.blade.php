@@ -3,6 +3,10 @@
 
 @section('content')
 <div class="container p-3 mt-1">
+    <a href="{{route($previousPageLinkName)}}" class="btn btn-outline-danger mb-3 ">
+        <i class="fas fa-arrow-left"></i>
+        
+    </a>
 
     @if($errors->all())
 

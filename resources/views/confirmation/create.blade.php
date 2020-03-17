@@ -1,4 +1,6 @@
-@extends('base-entity-create-form')
+@extends('base-entity-create-form',[
+    'previousPageLinkName'=>'confirmations.index'
+])
 
 
 @section('form')
