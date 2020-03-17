@@ -9,7 +9,12 @@
         <div class="card shadow-sm">
 
 
+
             <div class="card-body">
+                <a href="{{route('home')}}" class="btn btn-outline-danger mb-3 ">
+                    <i class="fas fa-arrow-left"></i>
+                    
+                </a>
                 <h3 class="card-title text-heading mb-1">
                     {{$indexName}}s
                 </h3>
@@ -17,6 +22,8 @@
 
 
                     <div class="col-12">
+
+
 
                         @include($tableName,[$tableKey=>$collection])
 
