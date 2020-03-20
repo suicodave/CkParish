@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $this->checkRoleOrPermissions(StaticPermission::VIEW_USER_COMPONENT)->only(['index', 'show']);
 
-        $this->checkRoleOrPermissions(StaticPermission::CREATE_USER)->only('store',['create']);
+        $this->checkRoleOrPermissions(StaticPermission::CREATE_USER)->only('store', ['create']);
 
         $this->checkRoleOrPermissions(StaticPermission::UPDATE_USER)
             ->only('update');
@@ -28,14 +28,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::nonAdministrator()->select([
+        $users = User::nonAdministrator()->withTrashed()->select([
             'id',
             'email',
             'first_name',
             'middle_name',
             'last_name',
             'created_at',
-            'updated_at'
+            'updated_at',
+            'deleted_at'
         ])->latest('id')->paginate();
 
         return view('user.index', [
@@ -146,5 +147,12 @@ class UserController extends Controller
         $user->syncRoles($request->roles);
 
         return redirect()->route('users.index');
+    }
+
+    function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect()->back();
     }
 }

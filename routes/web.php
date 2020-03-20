@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth', 'user.default-password']], function () {
 
     Route::resource('users', 'UserController');
 
+    Route::put('users/reactivate/{user}', 'UserReactivateController@reactivate')->name('users.reactivate');
+
     Route::resource('confirmations', 'ConfirmationController');
 
     Route::group(['prefix' => 'confirmations/{confirmation}'], function () {
